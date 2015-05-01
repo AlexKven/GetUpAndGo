@@ -1,0 +1,87 @@
+﻿<Page
+    x:Class="GetUpAndGo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetUpAndGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto" x:Name="BackgroundTaskErrorRow"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+    <TextBlock FontSize="40" HorizontalAlignment="Left">Get Up And Go</TextBlock>
+    <Grid Margin="0, 10, 0, 10" Grid.Row="1" Height="55">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="55"/>
+        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Rectangle Margin="5" Fill="Purple"/>
+      <Image VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="///Assets/Band/IconLarge.png"/>
+      <Button x:ConnectionId='2' x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch"                        />
+      <TextBlock x:Name="MessageBlock" Margin="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
+    </Grid>
+    <Grid Margin="0, 10, 0, 10" Grid.Row="2">
+      <TextBlock FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Couldn't set background task.</TextBlock>
+      <Button x:ConnectionId='1' Content="Try Again" MinHeight="0" HorizontalAlignment="Right" VerticalAlignment="Top"                                            />
+    </Grid>
+    <Grid Margin="0, 10, 0, 10" Grid.Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Prompt me to move around every...</TextBlock>
+      <ComboBox Grid.Column="1" SelectedIndex="3" Width="150" Margin="5">
+        <ComboBoxItem Content="15 Minutes"/>
+        <ComboBoxItem Content="30 Minutes"/>
+        <ComboBoxItem Content="45 Minutes"/>
+        <ComboBoxItem Content="60 Minutes"/>
+        <ComboBoxItem Content="75 Minutes"/>
+        <ComboBoxItem Content="90 Minutes"/>
+        <ComboBoxItem Content="105 Minutes"/>
+        <ComboBoxItem Content="120 Minutes"/>
+      </ComboBox>
+    </Grid>
+    <Grid Margin="0, 10, 0, 10" Grid.Row="4">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">if I didn't take more than...</TextBlock>
+      <ComboBox Grid.Column="1" SelectedIndex="0" Width="150" Margin="5">
+        <ComboBoxItem Content="0 Steps"/>
+        <ComboBoxItem Content="10 Steps"/>
+        <ComboBoxItem Content="15 Steps"/>
+        <ComboBoxItem Content="20 Steps"/>
+      </ComboBox>
+    </Grid>
+    <TextBlock Margin="0, 10, 0, 0" FontSize="22" Grid.Row="5" HorizontalAlignment="Center">Track my steps between...</TextBlock>
+    <Grid Grid.Row="6" Margin="0, 0, 0, 10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <TimePicker Time="7:00" Margin="5"/>
+      <TextBlock FontSize="32" VerticalAlignment="Center" Grid.Column="1" Margin="5">and</TextBlock>
+      <TimePicker Time="21:00" Margin="5" Grid.Column="2"/>
+    </Grid>
+    <CheckBox Margin="0, 10, 0, 10" Grid.Row="7" IsChecked="true">
+      <TextBlock TextWrapping="WrapWholeWords" FontSize="22">Don't prompt me if I'm in the middle of a calendar appointment.</TextBlock>
+    </CheckBox>
+    <TextBlock Grid.Row="9" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="16">Due to limitations of the operating system, exact prompt times may be up to 15 minutes later than intended.</TextBlock>
+  </Grid>
+</Page>
+

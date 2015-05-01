@@ -1,0 +1,2 @@
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\GetUpAndGo.csproj;neutral
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\GetUpAndGoBackground.csproj;neutral
