@@ -9,78 +9,84 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto" x:Name="BackgroundTaskErrorRow"/>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="*"/>
-      <RowDefinition Height="auto"/>
-    </Grid.RowDefinitions>
-    <TextBlock FontSize="40" HorizontalAlignment="Left">Get Up And Go</TextBlock>
-    <Grid Margin="0, 10, 0, 10" Grid.Row="1" Height="55">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="55"/>
-        <ColumnDefinition Width="auto"/>
-        <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>
-      <Rectangle Margin="5" Fill="Purple"/>
-      <Image VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="///Assets/Band/IconLarge.png"/>
-      <Button x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="PinButton_Click"/>
-      <TextBlock x:Name="MessageBlock" Margin="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="0" x:Name="BackgroundTaskErrorRow"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="40" HorizontalAlignment="Left">Get Up And Go</TextBlock>
+        <Grid Margin="0, 10, 0, 10" Grid.Row="1" Height="55">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Margin="5" Fill="Purple"/>
+            <Image VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="///Assets/Band/IconLarge.png"/>
+            <Button x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="PinButton_Click"/>
+            <TextBlock x:Name="MessageBlock" Margin="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
+        </Grid>
+        <Grid Margin="0, 10, 0, 10" Grid.Row="2">
+            <TextBlock FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Couldn't set background task.</TextBlock>
+            <Button Content="Try Again" MinHeight="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="RegisterBackgroundAgentButton_Click"/>
+        </Grid>
+        <Grid Margin="0, 10, 0, 10" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Prompt me to get up and walk every...</TextBlock>
+            <ComboBox x:Name="FrequencyComboBox" SelectionChanged="FrequencyComboBox_SelectionChanged" Grid.Column="1" Width="150" Margin="5">
+                <ComboBoxItem Tag="20" Content="15-30 minutes"/>
+                <ComboBoxItem Tag="35" Content="30-45 Minutes"/>
+                <ComboBoxItem Tag="50" Content="45-55 Minutes"/>
+                <ComboBoxItem Tag="55" Content="Hour"/>
+                <ComboBoxItem Tag="85" Content="1.5 Hours"/>
+                <ComboBoxItem Tag="115" Content="2 Hours"/>
+            </ComboBox>
+        </Grid>
+        <Grid Margin="0, 10, 0, 10" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">if I didn't take more than...</TextBlock>
+            <ComboBox x:Name="ThresholdComboBox" SelectionChanged="ThresholdComboBox_SelectionChanged" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Grid.Column="1" Width="150" Margin="5">
+                <ComboBoxItem Tag="0" Content="0 Steps"/>
+                <ComboBoxItem Tag="10" Content="10 Steps"/>
+                <ComboBoxItem Tag="25" Content="25 Steps"/>
+                <ComboBoxItem Tag="50" Content="50 Steps"/>
+                <ComboBoxItem Tag="75" Content="75 Steps"/>
+                <ComboBoxItem Tag="100" Content="100 Steps"/>
+                <ComboBoxItem Tag="150" Content="150 Steps"/>
+                <ComboBoxItem Tag="200" Content="200 Steps"/>
+                <ComboBoxItem Tag="300" Content="300 Steps"/>
+                <ComboBoxItem Tag="500" Content="500 Steps"/>
+            </ComboBox>
+        </Grid>
+        <TextBlock Margin="0, 10, 0, 0" FontSize="22" Grid.Row="5" HorizontalAlignment="Center">Track my steps between...</TextBlock>
+        <Grid Grid.Row="6" Margin="0, 0, 0, 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TimePicker x:Name="TimePicker1" TimeChanged="TimePicker_TimeChanged" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5"/>
+            <TextBlock FontSize="32" VerticalAlignment="Center" Grid.Column="1" Margin="5">and</TextBlock>
+            <TimePicker x:Name="TimePicker2" TimeChanged="TimePicker_TimeChanged" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5" Grid.Column="2"/>
+        </Grid>
+        <CheckBox x:Name="AvoidAppointmentsCheckBox" Checked="AvoidAppointmentsCheckBox_Checked" Unchecked="AvoidAppointmentsCheckBox_Unchecked" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="0, 10, 0, 10" Grid.Row="7" IsChecked="true">
+            <TextBlock TextWrapping="WrapWholeWords" FontSize="22">Don't prompt me if I'm in the middle of a calendar appointment.</TextBlock>
+        </CheckBox>
+        <Button Grid.Row="8" Click="RegisterBackgroundAgentButton_Click" HorizontalAlignment="Center">Reset Background Task</Button>
+        <TextBlock Grid.Row="10" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="16">Due to limitations of the operating system, exact prompt times may be up to 15 minutes later than intended.</TextBlock>
     </Grid>
-    <Grid Margin="0, 10, 0, 10" Grid.Row="2">
-      <TextBlock FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Couldn't set background task.</TextBlock>
-      <Button Content="Try Again" MinHeight="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="RegisterBackgroundAgentButton_Click"/>
-    </Grid>
-    <Grid Margin="0, 10, 0, 10" Grid.Row="3">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="auto"/>
-      </Grid.ColumnDefinitions>
-      <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Prompt me to move around every...</TextBlock>
-      <ComboBox Grid.Column="1" SelectedIndex="3" Width="150" Margin="5">
-        <ComboBoxItem Content="15 Minutes"/>
-        <ComboBoxItem Content="30 Minutes"/>
-        <ComboBoxItem Content="45 Minutes"/>
-        <ComboBoxItem Content="60 Minutes"/>
-        <ComboBoxItem Content="75 Minutes"/>
-        <ComboBoxItem Content="90 Minutes"/>
-        <ComboBoxItem Content="105 Minutes"/>
-        <ComboBoxItem Content="120 Minutes"/>
-      </ComboBox>
-    </Grid>
-    <Grid Margin="0, 10, 0, 10" Grid.Row="4">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="auto"/>
-      </Grid.ColumnDefinitions>
-      <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">if I didn't take more than...</TextBlock>
-      <ComboBox Grid.Column="1" SelectedIndex="0" Width="150" Margin="5">
-        <ComboBoxItem Content="0 Steps"/>
-        <ComboBoxItem Content="10 Steps"/>
-        <ComboBoxItem Content="15 Steps"/>
-        <ComboBoxItem Content="20 Steps"/>
-      </ComboBox>
-    </Grid>
-    <TextBlock Margin="0, 10, 0, 0" FontSize="22" Grid.Row="5" HorizontalAlignment="Center">Track my steps between...</TextBlock>
-    <Grid Grid.Row="6" Margin="0, 0, 0, 10">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="auto"/>
-        <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>
-      <TimePicker Time="7:00" Margin="5"/>
-      <TextBlock FontSize="32" VerticalAlignment="Center" Grid.Column="1" Margin="5">and</TextBlock>
-      <TimePicker Time="21:00" Margin="5" Grid.Column="2"/>
-    </Grid>
-    <CheckBox Margin="0, 10, 0, 10" Grid.Row="7" IsChecked="true">
-      <TextBlock TextWrapping="WrapWholeWords" FontSize="22">Don't prompt me if I'm in the middle of a calendar appointment.</TextBlock>
-    </CheckBox>
-    <TextBlock Grid.Row="9" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="16">Due to limitations of the operating system, exact prompt times may be up to 15 minutes later than intended.</TextBlock>
-  </Grid>
 </Page>

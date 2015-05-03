@@ -24,7 +24,7 @@
       <Extensions>
         <Extension Category="windows.backgroundTasks" EntryPoint="GetUpAndGoBackground.BackgroundAgent">
           <BackgroundTasks>
-            <Task Type="timer" />
+            <Task Type="timer"/>
           </BackgroundTasks>
         </Extension>
       </Extensions>

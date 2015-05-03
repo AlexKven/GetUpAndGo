@@ -12,13 +12,14 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="auto"/>
       <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto" x:Name="BackgroundTaskErrorRow"/>
+      <RowDefinition Height="0" x:Name="BackgroundTaskErrorRow"/>
       <RowDefinition Height="auto"/>
       <RowDefinition Height="auto"/>
       <RowDefinition Height="auto"/>
       <RowDefinition Height="auto"/>
-      <RowDefinition Height="auto"/>
-      <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
       <RowDefinition Height="auto"/>
     </Grid.RowDefinitions>
     <TextBlock FontSize="40" HorizontalAlignment="Left">Get Up And Go</TextBlock>
@@ -30,12 +31,12 @@
       </Grid.ColumnDefinitions>
       <Rectangle Margin="5" Fill="Purple"/>
       <Image VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="///Assets/Band/IconLarge.png"/>
-      <Button x:ConnectionId='2' x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch"                        />
+      <Button x:ConnectionId='8' x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch"                        />
       <TextBlock x:Name="MessageBlock" Margin="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
     </Grid>
     <Grid Margin="0, 10, 0, 10" Grid.Row="2">
       <TextBlock FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Couldn't set background task.</TextBlock>
-      <Button x:ConnectionId='1' Content="Try Again" MinHeight="0" HorizontalAlignment="Right" VerticalAlignment="Top"                                            />
+      <Button x:ConnectionId='7' Content="Try Again" MinHeight="0" HorizontalAlignment="Right" VerticalAlignment="Top"                                            />
     </Grid>
     <Grid Margin="0, 10, 0, 10" Grid.Row="3">
       <Grid.ColumnDefinitions>
@@ -43,15 +44,17 @@
         <ColumnDefinition Width="auto"/>
       </Grid.ColumnDefinitions>
       <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Prompt me to move around every...</TextBlock>
-      <ComboBox Grid.Column="1" SelectedIndex="3" Width="150" Margin="5">
-        <ComboBoxItem Content="15 Minutes"/>
-        <ComboBoxItem Content="30 Minutes"/>
-        <ComboBoxItem Content="45 Minutes"/>
-        <ComboBoxItem Content="60 Minutes"/>
-        <ComboBoxItem Content="75 Minutes"/>
-        <ComboBoxItem Content="90 Minutes"/>
-        <ComboBoxItem Content="105 Minutes"/>
-        <ComboBoxItem Content="120 Minutes"/>
+            <ComboBox x:ConnectionId='6' x:Name="FrequencyComboBox"                                                       Grid.Column="1" Width="150" Margin="5">
+                <ComboBoxItem Tag="10" Content="0 Minutes"/>
+                <ComboBoxItem Tag="11" Content="1 Minutes"/>
+                <ComboBoxItem Tag="15" Content="15 Minutes"/>
+        <ComboBoxItem Tag="30" Content="30 Minutes"/>
+        <ComboBoxItem Tag="45" Content="45 Minutes"/>
+        <ComboBoxItem Tag="60" Content="60 Minutes"/>
+        <ComboBoxItem Tag="75" Content="75 Minutes"/>
+        <ComboBoxItem Tag="90" Content="90 Minutes"/>
+        <ComboBoxItem Tag="105" Content="105 Minutes"/>
+        <ComboBoxItem Tag="120" Content="120 Minutes"/>
       </ComboBox>
     </Grid>
     <Grid Margin="0, 10, 0, 10" Grid.Row="4">
@@ -60,11 +63,17 @@
         <ColumnDefinition Width="auto"/>
       </Grid.ColumnDefinitions>
       <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">if I didn't take more than...</TextBlock>
-      <ComboBox Grid.Column="1" SelectedIndex="0" Width="150" Margin="5">
-        <ComboBoxItem Content="0 Steps"/>
-        <ComboBoxItem Content="10 Steps"/>
-        <ComboBoxItem Content="15 Steps"/>
-        <ComboBoxItem Content="20 Steps"/>
+      <ComboBox x:ConnectionId='5' x:Name="ThresholdComboBox"                                                       IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Grid.Column="1" Width="150" Margin="5">
+        <ComboBoxItem Tag="0" Content="0 Steps"/>
+        <ComboBoxItem Tag="10" Content="10 Steps"/>
+        <ComboBoxItem Tag="20" Content="20 Steps"/>
+        <ComboBoxItem Tag="30" Content="30 Steps"/>
+        <ComboBoxItem Tag="40" Content="40 Steps"/>
+        <ComboBoxItem Tag="50" Content="50 Steps"/>
+        <ComboBoxItem Tag="75" Content="75 Steps"/>
+        <ComboBoxItem Tag="100" Content="100 Steps"/>
+        <ComboBoxItem Tag="150" Content="150 Steps"/>
+        <ComboBoxItem Tag="200" Content="200 Steps"/>
       </ComboBox>
     </Grid>
     <TextBlock Margin="0, 10, 0, 0" FontSize="22" Grid.Row="5" HorizontalAlignment="Center">Track my steps between...</TextBlock>
@@ -74,14 +83,15 @@
         <ColumnDefinition Width="auto"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TimePicker Time="7:00" Margin="5"/>
+      <TimePicker x:ConnectionId='3' x:Name="TimePicker1"                                      IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5"/>
       <TextBlock FontSize="32" VerticalAlignment="Center" Grid.Column="1" Margin="5">and</TextBlock>
-      <TimePicker Time="21:00" Margin="5" Grid.Column="2"/>
+      <TimePicker x:ConnectionId='4' x:Name="TimePicker2"                                      IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5" Grid.Column="2"/>
     </Grid>
-    <CheckBox Margin="0, 10, 0, 10" Grid.Row="7" IsChecked="true">
+    <CheckBox x:ConnectionId='1' x:Name="AvoidAppointmentsCheckBox"                                                                                             IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="0, 10, 0, 10" Grid.Row="7" IsChecked="true">
       <TextBlock TextWrapping="WrapWholeWords" FontSize="22">Don't prompt me if I'm in the middle of a calendar appointment.</TextBlock>
     </CheckBox>
-    <TextBlock Grid.Row="9" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="16">Due to limitations of the operating system, exact prompt times may be up to 15 minutes later than intended.</TextBlock>
+        <Button x:ConnectionId='2' Grid.Row="8"                                             HorizontalAlignment="Center">Reset Background Task</Button>
+    <TextBlock Grid.Row="10" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="16">Due to limitations of the operating system, exact prompt times may be up to 15 minutes later than intended.</TextBlock>
   </Grid>
 </Page>
 
