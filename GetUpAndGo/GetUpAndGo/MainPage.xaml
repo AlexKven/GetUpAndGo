@@ -22,7 +22,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="40" HorizontalAlignment="Left">Get Up And Go</TextBlock>
+        <TextBlock FontSize="40" HorizontalAlignment="Left">Walk Reminder</TextBlock>
         <Grid Margin="0, 10, 0, 10" Grid.Row="1" Height="55">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="55"/>

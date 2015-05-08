@@ -68,9 +68,11 @@ namespace GetUpAndGoBackground
                       ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastReading"] = currentReading.Value;
                       ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastPrompt"] = now.ToString();
                       ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastActive"] = now.ToString();
+#if DEBUG
                       Guid myTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
                       // Send a notification.
                       await bandClient.NotificationManager.SendMessageAsync(myTileId, "Don't go for a walk!", "You have taken " + (currentReading - lastReading) + " steps in the last " + ((int)(now - lastPrompt).TotalMinutes).ToString() + " minutes.", DateTimeOffset.Now, MessageFlags.ShowDialog);
+#endif
                     }
                     else
                     {
@@ -82,12 +84,14 @@ namespace GetUpAndGoBackground
                         ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastReading"] = currentReading.Value;
                         ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastPrompt"] = now.ToString();
                       }
+#if DEBUG
                       else
                       {
                           Guid myTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
                           // Send a notification.
                           await bandClient.NotificationManager.SendMessageAsync(myTileId, "Don't go for a walk!", "You have taken " + (currentReading - lastReading) + " steps in the last " + ((int)(now - lastPrompt).TotalMinutes).ToString() + " minutes.", DateTimeOffset.Now, MessageFlags.ShowDialog);
                       }
+#endif
                     }
                   }
                 }
