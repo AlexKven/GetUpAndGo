@@ -61,7 +61,7 @@ namespace GetUpAndGo
             await TrySetBackgroundTask();
             bandTile = new BandTile(bandTileId)
             {
-              Name = "Get Up And Go",
+              Name = "Walk Reminder",
               TileIcon = await LoadIcon("ms-appx:///Assets/Band/IconLarge.png"),
               SmallIcon = await LoadIcon("ms-appx:///Assets/Band/IconSmall.png")
             };

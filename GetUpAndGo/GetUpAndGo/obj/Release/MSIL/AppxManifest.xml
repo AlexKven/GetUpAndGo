@@ -7,11 +7,11 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="3fb1614a-624e-4d85-b703-9941467d99c6" Publisher="CN=Alexander" Version="1.0.0.0" ProcessorArchitecture="neutral" />
-  <mp:PhoneIdentity PhoneProductId="3fb1614a-624e-4d85-b703-9941467d99c6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="16469AlexKven.GoforaWalk" Publisher="CN=81569EFF-4F9B-4E3C-ABA4-C4271AC0D1B2" Version="1.1.0.0" ProcessorArchitecture="neutral" />
+  <mp:PhoneIdentity PhoneProductId="70867d3b-7a30-4d35-b98a-53a356ab361b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>GetUpAndGo</DisplayName>
-    <PublisherDisplayName>Alexander</PublisherDisplayName>
+    <DisplayName>Walk Reminder</DisplayName>
+    <PublisherDisplayName>Alex Kvenvolden</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -23,7 +23,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="GetUpAndGo.exe" EntryPoint="GetUpAndGo.App">
-      <m3:VisualElements DisplayName="GetUpAndGo" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="GetUpAndGo" ForegroundText="light" BackgroundColor="transparent">
+      <m3:VisualElements DisplayName="Walk Reminder" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="GetUpAndGo" ForegroundText="light" BackgroundColor="transparent">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png"></m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" />
       </m3:VisualElements>
