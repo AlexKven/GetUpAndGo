@@ -1,0 +1,89 @@
+﻿<Page
+    x:Class="GetUpAndGo.IntroPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetUpAndGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <FlipView SelectedIndex="0">
+            <FlipViewItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="15" FontSize="36" TextWrapping="WrapWholeWords" VerticalAlignment="Center" TextAlignment="Center">Walk reminder puts a new tile on your Microsoft Band.</TextBlock>
+                    <Image Grid.Row="1" Source="///Assets/Images/BandImage.png"/>
+                    <TextBlock Grid.Row="2" FontSize="22" TextAlignment="Center" VerticalAlignment="Center">Slide to Continue >></TextBlock>
+                </Grid>
+            </FlipViewItem>
+            <FlipViewItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="15" FontSize="32" TextWrapping="WrapWholeWords" VerticalAlignment="Center" TextAlignment="Center">When you haven't walked in a while, Walk Reminder reminds you to move around.</TextBlock>
+                    <Image Grid.Row="1" Source="///Assets/Images/BandImageNotification.png"/>
+                    <TextBlock Grid.Row="2" FontSize="22" TextAlignment="Center" VerticalAlignment="Center">Slide to Continue >></TextBlock>
+                </Grid>
+            </FlipViewItem>
+            <FlipViewItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Margin="15" FontSize="25" TextWrapping="WrapWholeWords" VerticalAlignment="Center" TextAlignment="Center">Walk Reminder doesn't remind you during the night (7am to 9pm by default, user configurable). It also doesn't remind you during calendar appointments by default.</TextBlock>
+                    <Image Margin="10" Grid.Column="0" Source="///Assets/Images/CalendarExample.png"/>
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" FontSize="22" TextAlignment="Center" VerticalAlignment="Center">Slide to Continue >></TextBlock>
+                </Grid>
+            </FlipViewItem>
+            <FlipViewItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="15" FontSize="36" TextWrapping="WrapWholeWords" VerticalAlignment="Center" TextAlignment="Center">One Last Thing...</TextBlock>
+                    <TextBlock VerticalAlignment="Center" TextWrapping="WrapWholeWords" Margin="15" Grid.Row="1" FontSize="22">
+                        The Walk Reminder tile must be pinned to the Band for Walk Reminder to work. There is a limit to the number of tiles that can be pinned
+                        to the Microsoft Band. If there isn't any space for Walk Reminder, please remove a tile. Also, the app won't work if it can't set the background
+                        task. If it can't set the background task, turn one of the background apps off in the Battery Saver app and try again.
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" FontSize="22" TextAlignment="Center" VerticalAlignment="Center">Slide to Continue >></TextBlock>
+                </Grid>
+            </FlipViewItem>
+            <FlipViewItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="15" FontSize="36" TextWrapping="WrapWholeWords" VerticalAlignment="Center" TextAlignment="Center">You're All Set.</TextBlock>
+                    <TextBlock VerticalAlignment="Center" TextWrapping="WrapWholeWords" Margin="15" Grid.Row="1" FontSize="26">
+                        Tap the button below to configure the app's settings and never forget to walk again.
+                    </TextBlock>
+                    <TextBlock VerticalAlignment="Center" TextWrapping="WrapWholeWords" Margin="15" Grid.Row="2" FontSize="22">
+                        If you run into any issues, tweet me @AlexKven, or email me at mathandprogramming@gmail.com, and I'll get back to you as soon as possible.
+                    </TextBlock>
+                    <Button Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Click="Button_Click">Let's Get Started</Button>
+                </Grid>
+            </FlipViewItem>
+        </FlipView>
+    </Grid>
+</Page>

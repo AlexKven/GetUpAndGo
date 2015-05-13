@@ -32,7 +32,7 @@
             <Rectangle Margin="5" Fill="Purple"/>
             <Image VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="///Assets/Band/IconLarge.png"/>
             <Button x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="PinButton_Click"/>
-            <TextBlock x:Name="MessageBlock" Margin="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
+            <TextBlock x:Name="MessageBlock" Margin="4.833,3,5,0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
         </Grid>
         <Grid Margin="0, 10, 0, 10" Grid.Row="2">
             <TextBlock FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Couldn't set background task.</TextBlock>
@@ -44,7 +44,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Prompt me to get up and walk every...</TextBlock>
-            <ComboBox x:Name="FrequencyComboBox" SelectionChanged="FrequencyComboBox_SelectionChanged" Grid.Column="1" Width="150" Margin="5">
+            <ComboBox x:Name="FrequencyComboBox" IsEnabledChanged="FrequencyComboBox_IsEnabledChanged" SelectionChanged="FrequencyComboBox_SelectionChanged" Grid.Column="1" Width="150" Margin="5">
                 <ComboBoxItem Tag="20" Content="15-30 minutes"/>
                 <ComboBoxItem Tag="35" Content="30-45 Minutes"/>
                 <ComboBoxItem Tag="50" Content="45-55 Minutes"/>
@@ -88,5 +88,9 @@
         </CheckBox>
         <Button Grid.Row="8" Click="RegisterBackgroundAgentButton_Click" HorizontalAlignment="Center">Reset Background Task</Button>
         <TextBlock Grid.Row="10" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="16">Due to limitations of the operating system, exact prompt times may be up to 15 minutes later than intended.</TextBlock>
+        <Grid x:Name="ErrorPopup" Grid.Row="3" Grid.RowSpan="7" IsHitTestVisible="False">
+            <Rectangle Opacity="0.9" Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+            <TextBlock x:Name="ErrorBlock" Margin="15" FontSize="26" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWholeWords">Loading...</TextBlock>
+        </Grid>
     </Grid>
 </Page>

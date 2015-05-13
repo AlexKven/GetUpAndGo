@@ -6,7 +6,7 @@
     <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
-    <PackageIdentityName>3fb1614a-624e-4d85-b703-9941467d99c6</PackageIdentityName>
+    <PackageIdentityName>70867d3b-7a30-4d35-b98a-53a356ab361b</PackageIdentityName>
     <IntermediateOutputPath>C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
@@ -37,6 +37,15 @@
     <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\Assets\Band\IconSmall.png">
       <PackagePath>Assets\Band\IconSmall.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\Assets\Images\BandImage.png">
+      <PackagePath>Assets\Images\BandImage.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\Assets\Images\BandImageNotification.png">
+      <PackagePath>Assets\Images\BandImageNotification.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\Assets\Images\CalendarExample.png">
+      <PackagePath>Assets\Images\CalendarExample.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -63,6 +72,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\IntroPage.xbf">
+      <PackagePath>IntroPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>

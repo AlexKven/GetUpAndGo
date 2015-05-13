@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -51,8 +52,17 @@ namespace GetUpAndGo
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+            GetUpAndGoBackground.BackgroundAgent.EnsureSettings();
+            ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["ApplicationRuns"] =
+                (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["ApplicationRuns"] + 1;
 
             Frame rootFrame = Window.Current.Content as Frame;
+            Type initialPageType = typeof(MainPage);
+            if ((double)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastVersionRun"] < 1.1)
+            {
+                ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastVersionRun"] = 1.1;
+                initialPageType = typeof(IntroPage);
+            }
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -91,7 +101,7 @@ namespace GetUpAndGo
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                if (!rootFrame.Navigate(initialPageType, e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
