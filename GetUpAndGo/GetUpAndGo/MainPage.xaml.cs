@@ -107,7 +107,10 @@ namespace GetUpAndGo
         void UpdateUI()
         {
             if (backgroundTask == null)
+            {
                 BackgroundTaskErrorRow.Height = GridLength.Auto;
+                ErrorBlock.Text = "Go to the Battery Saver app and make sure that you don't have the maximum number of apps in the background already and try again.";
+            }
             else
                 BackgroundTaskErrorRow.Height = new GridLength(0);
 
@@ -122,6 +125,7 @@ namespace GetUpAndGo
             {
                 PinButton.Content = tilePinned ? "Unpin Band Tile" : "Pin Band Tile";
             }
+            if (!tilePinned) ErrorBlock.Text = "You need to pin the Walk Reminder tile before you can change the settings.";
         }
 
         async Task CheckForPinnedBandTile()
@@ -145,7 +149,7 @@ namespace GetUpAndGo
                 }
                 catch (Exception ex)
                 {
-                    MessageBlock.Text = ex.Message;
+                    ErrorBlock.Text = ex.Message;
                 }
             }
             tilePinned = result;
@@ -153,6 +157,7 @@ namespace GetUpAndGo
 
         async Task CheckForBand()
         {
+            ErrorBlock.Text = "Loading...";
             if (currentBand != null) return;
             MessageBlock.Text = "Looking for a Microsoft Band...";
             PinButton.IsEnabled = false;
@@ -181,6 +186,8 @@ namespace GetUpAndGo
                 bandClient.Dispose();
                 bandClient = null;
             }
+            if (!tilePinned) ErrorBlock.Text = "You need to pin the Walk Reminder tile before you can change the settings.";
+            if (currentBand == null) ErrorBlock.Text = "You need to connect a Microsoft Band before you can change the settings. Make sure that your Band is paired, and all software is up to date.";
             UpdateUI();
         }
 
@@ -222,6 +229,7 @@ namespace GetUpAndGo
 
         private async void PinButton_Click(object sender, RoutedEventArgs e)
         {
+            ErrorBlock.Text = "Loading...";
             PinButton.IsEnabled = false;
             if (currentBand == null)
             {
@@ -249,16 +257,13 @@ namespace GetUpAndGo
                     bandClient = await BandClientManager.Instance.ConnectAsync(currentBand);
                     if (!(await bandClient.TileManager.AddTileAsync(bandTile)))
                     {
-                        if (await bandClient.TileManager.GetRemainingTileCapacityAsync() == 0)
-                            MessageBlock.Text = "Too many tiles are pinned.";
-                        else
-                            MessageBlock.Text = "Couldn't pin tile.";
+                        ErrorBlock.Text = "Couldn't pin the tile. Go into the Microsoft Health app and make sure you don't already have the maximum number of tiles pinned to your Band already.";
                     }
                     bandClient.Dispose();
                 }
                 catch (Exception ex)
                 {
-                    MessageBlock.Text = ex.Message;
+                    ErrorBlock.Text = ex.Message;
                 }
             }
             await CheckForPinnedBandTile();
