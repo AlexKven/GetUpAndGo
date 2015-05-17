@@ -31,6 +31,18 @@ namespace GetUpAndGo
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        #region Fields
+        const string bgTaskName = "GetUpAndGoBackgroundAgent";
+        IBandInfo currentBand;
+        IBackgroundTaskRegistration backgroundTask;
+        bool tilePinned = true;
+        bool loadingFromSettings = true;
+
+        Guid bandTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
+        BandTile bandTile;
+        #endregion
+
+        #region Constructor & Navigation
         public MainPage()
         {
             this.InitializeComponent();
@@ -38,259 +50,39 @@ namespace GetUpAndGo
             loadFromSettings();
         }
 
-        const string bgTaskName = "GetUpAndGoBackgroundAgent";
-        IBandInfo currentBand;
-        IBandClient bandClient;
-        IBackgroundTaskRegistration backgroundTask;
-        bool tilePinned = true;
-        bool loadingFromSettings = true;
-
-        Guid bandTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
-        BandTile bandTile;
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (currentBand == null)
-            {
-                await TrySetBackgroundTask();
-                bandTile = new BandTile(bandTileId)
-                {
-                    Name = "Walk Reminder",
-                    TileIcon = await LoadIcon("ms-appx:///Assets/Band/IconLarge.png"),
-                    SmallIcon = await LoadIcon("ms-appx:///Assets/Band/IconSmall.png")
-                };
-                await CheckForBand();
-                await CheckForPinnedBandTile();
-                UpdateUI();
-            }
-        }
+            loadingMessage = true;
+            string msg = await detectBand();
+            if (msg == null)
+                MessageBlock.Text = "Connected to " + currentBand.Name;
+            else
+                MessageBlock.Text = "Not connected to a Band.";
+            bandErrorMessage = msg;
 
-        void loadFromSettings()
-        {
-            loadingFromSettings = true;
-            int sh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartHour"];
-            int sm = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartMinute"];
-            int eh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndHour"];
-            int em = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndMinute"];
-            int freq = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Frequency"];
-            int thresh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Threshold"];
-            bool avoidAppts = (bool)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["AvoidAppointments"];
-            foreach (ComboBoxItem item in FrequencyComboBox.Items)
-            {
-                int curItem = int.Parse(item.Tag.ToString());
-                if (freq >= curItem)
-                    FrequencyComboBox.SelectedItem = item;
-            }
-            foreach (ComboBoxItem item in ThresholdComboBox.Items)
-            {
-                int curItem = int.Parse(item.Tag.ToString());
-                if (thresh >= curItem)
-                    ThresholdComboBox.SelectedItem = item;
-            }
-            TimePicker1.Time = new TimeSpan(sh, sm, 0);
-            TimePicker2.Time = new TimeSpan(eh, em, 0);
-            AvoidAppointmentsCheckBox.IsChecked = avoidAppts;
-            loadingFromSettings = false;
+            loadingMessage = false;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            //if (bandClient != null) bandClient.Dispose();
         }
+        #endregion
 
-        void UpdateUI()
-        {
-            if (backgroundTask == null)
-            {
-                BackgroundTaskErrorRow.Height = GridLength.Auto;
-                ErrorBlock.Text = "Go to the Battery Saver app and make sure that you don't have the maximum number of apps in the background already and try again.";
-            }
-            else
-                BackgroundTaskErrorRow.Height = new GridLength(0);
-
-            FrequencyComboBox.IsEnabled = (tilePinned && backgroundTask != null && currentBand != null);
-
-            PinButton.IsEnabled = true;
-            if (currentBand == null)
-            {
-                PinButton.Content = "Try Again";
-            }
-            else
-            {
-                PinButton.Content = tilePinned ? "Unpin Band Tile" : "Pin Band Tile";
-            }
-            if (!tilePinned) ErrorBlock.Text = "You need to pin the Walk Reminder tile before you can change the settings.";
-        }
-
-        async Task CheckForPinnedBandTile()
-        {
-            bool result = false;
-            if (currentBand == null)
-                tilePinned = false;
-            else
-            {
-                try
-                {
-                    bandClient = await BandClientManager.Instance.ConnectAsync(currentBand);
-                    foreach (var tile in await bandClient.TileManager.GetTilesAsync())
-                    {
-                        if (tile.Name == bandTile.Name)
-                        {
-                            result = true;
-                        }
-                    }
-                    bandClient.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    ErrorBlock.Text = ex.Message;
-                }
-            }
-            tilePinned = result;
-        }
-
-        async Task CheckForBand()
-        {
-            ErrorBlock.Text = "Loading...";
-            if (currentBand != null) return;
-            MessageBlock.Text = "Looking for a Microsoft Band...";
-            PinButton.IsEnabled = false;
-            IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
-            if (pairedBands.Length < 1)
-            {
-                MessageBlock.Text = "I can't find a Microsoft Band.";
-            }
-            else
-            {
-                currentBand = pairedBands[0];
-                try
-                {
-                    bandClient = await BandClientManager.Instance.ConnectAsync(currentBand);
-                    MessageBlock.Text = "Connected to " + currentBand.Name + ".";
-                    PinButton.IsEnabled = true;
-                }
-                catch (Exception ex)
-                {
-                    currentBand = null;
-                    MessageBlock.Text = ex.Message;
-                }
-            }
-            if (bandClient != null)
-            {
-                bandClient.Dispose();
-                bandClient = null;
-            }
-            if (!tilePinned) ErrorBlock.Text = "You need to pin the Walk Reminder tile before you can change the settings.";
-            if (currentBand == null) ErrorBlock.Text = "You need to connect a Microsoft Band before you can change the settings. Make sure that your Band is paired, and all software is up to date.";
-            UpdateUI();
-        }
-
-        void RemoveBackgroundTask()
-        {
-            if (backgroundTask != null)
-            {
-                backgroundTask.Unregister(true);
-                BackgroundExecutionManager.RemoveAccess();
-            }
-            UpdateUI();
-        }
-
-        async Task TrySetBackgroundTask()
-        {
-            backgroundTask = null;
-            foreach (var task in BackgroundTaskRegistration.AllTasks)
-            {
-                if (task.Value.Name == bgTaskName)
-                {
-                    backgroundTask = task.Value;
-                }
-            }
-
-            if (backgroundTask == null)
-            {
-                var status = await BackgroundExecutionManager.RequestAccessAsync();
-                if (status == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity || status == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
-                {
-                    var builder = new BackgroundTaskBuilder();
-                    builder.Name = bgTaskName;
-                    builder.TaskEntryPoint = "GetUpAndGoBackground.BackgroundAgent";
-                    builder.SetTrigger(new TimeTrigger(15, false));
-                    backgroundTask = builder.Register();
-                }
-            }
-            UpdateUI();
-        }
-
+        #region Button Press Handlers
         private async void PinButton_Click(object sender, RoutedEventArgs e)
         {
-            ErrorBlock.Text = "Loading...";
-            PinButton.IsEnabled = false;
-            if (currentBand == null)
-            {
-                await CheckForBand();
-            }
-            else if (tilePinned)
-            {
-                try
-                {
-                    bandClient = await BandClientManager.Instance.ConnectAsync(currentBand);
-                    if (!(await bandClient.TileManager.RemoveTileAsync(bandTile)))
-                        MessageBlock.Text = "Couldn't remove tile.";
-                    bandClient.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    MessageBlock.Text = ex.Message;
-                }
-            }
-            else
-            {
-                try
-                {
-                    // Create a Tile.
-                    bandClient = await BandClientManager.Instance.ConnectAsync(currentBand);
-                    if (!(await bandClient.TileManager.AddTileAsync(bandTile)))
-                    {
-                        ErrorBlock.Text = "Couldn't pin the tile. Go into the Microsoft Health app and make sure you don't already have the maximum number of tiles pinned to your Band already.";
-                    }
-                    bandClient.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    ErrorBlock.Text = ex.Message;
-                }
-            }
-            await CheckForPinnedBandTile();
-            UpdateUI();
-            PinButton.IsEnabled = true;
-        }
-
-        private async Task<BandIcon> LoadIcon(string uri)
-        {
-            StorageFile imageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri(uri));
-
-            using (IRandomAccessStream fileStream = await imageFile.OpenAsync(FileAccessMode.Read))
-            {
-                WriteableBitmap bitmap = new WriteableBitmap(1, 1);
-                //Windows.ApplicationModel.Appointments.AppointmentManager
-                await bitmap.SetSourceAsync(fileStream);
-                return bitmap.ToBandIcon();
-            }
         }
 
         private async void RegisterBackgroundAgentButton_Click(object sender, RoutedEventArgs e)
         {
             RemoveBackgroundTask();
             await TrySetBackgroundTask();
-            UpdateUI();
+            //UpdateUI();
         }
+        #endregion
 
+        #region Settings Control Event Handlers
         private void FrequencyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Frequency"] = int.Parse(((ComboBoxItem)FrequencyComboBox.SelectedItem).Tag.ToString());
@@ -333,17 +125,179 @@ namespace GetUpAndGo
         {
             ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["AvoidAppointments"] = false;
         }
+        #endregion
 
-        private void FrequencyComboBox_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        #region UI Modifiers
+        private bool _loadingMessage = false;
+        private bool loadingMessage
         {
-            if (FrequencyComboBox.IsEnabled)
+            get { return _loadingMessage; }
+            set
             {
-                ErrorPopup.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                _loadingMessage = value;
+                setErrorMessage();
             }
-            else
+        }
+
+        private string _bandErrorMessage;
+        private string bandErrorMessage
+        {
+            get { return _bandErrorMessage; }
+            set
             {
-                ErrorPopup.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                _bandErrorMessage = value;
+                setErrorMessage();
             }
+        }
+
+        private string _backgroundTaskErrorMessage;
+        private string backgroundTaskErrorMessage
+        {
+            get { return _backgroundTaskErrorMessage; }
+            set
+            {
+                _backgroundTaskErrorMessage = value;
+                setErrorMessage();
+            }
+        }
+
+        private string _tileErrorMessage;
+        private string tileErrorMessage
+        {
+            get { return _tileErrorMessage; }
+            set
+            {
+                _tileErrorMessage = value;
+                setErrorMessage();
+            }
+        }
+
+        private void setErrorMessage()
+        {
+            bool message = false;
+            if (loadingMessage)
+            {
+                ErrorBlock.Text = "Loading...";
+                message = true;
+            }
+            else if (bandErrorMessage != null)
+            {
+                ErrorBlock.Text = bandErrorMessage;
+                message = true;
+            }
+            else if (backgroundTaskErrorMessage != null)
+            {
+                ErrorBlock.Text = backgroundTaskErrorMessage;
+                message = true;
+            }
+            else if (tileErrorMessage != null)
+            {
+                ErrorBlock.Text = tileErrorMessage;
+                message = true;
+            }
+            FrequencyComboBox.IsEnabled = !message;
+            ErrorPopup.Visibility = message ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+
+        #endregion
+
+        #region Band Interfacing Functions
+        private async Task<string> detectBand()
+        {
+            IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
+            if (pairedBands.Length == 0) return "No Microsoft Band is set up for this phone.";
+            try
+            {
+                using (IBandClient bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Error connecting to your Microsoft Band: " + ex.Message;
+            }
+            currentBand = pairedBands[0];
+            return null;
+        }
+        #endregion
+
+        private async Task<BandIcon> LoadIcon(string uri)
+        {
+            StorageFile imageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri(uri));
+
+            using (IRandomAccessStream fileStream = await imageFile.OpenAsync(FileAccessMode.Read))
+            {
+                WriteableBitmap bitmap = new WriteableBitmap(1, 1);
+                //Windows.ApplicationModel.Appointments.AppointmentManager
+                await bitmap.SetSourceAsync(fileStream);
+                return bitmap.ToBandIcon();
+            }
+        }
+
+        void loadFromSettings()
+        {
+            loadingFromSettings = true;
+            int sh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartHour"];
+            int sm = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartMinute"];
+            int eh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndHour"];
+            int em = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndMinute"];
+            int freq = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Frequency"];
+            int thresh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Threshold"];
+            bool avoidAppts = (bool)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["AvoidAppointments"];
+            foreach (ComboBoxItem item in FrequencyComboBox.Items)
+            {
+                int curItem = int.Parse(item.Tag.ToString());
+                if (freq >= curItem)
+                    FrequencyComboBox.SelectedItem = item;
+            }
+            foreach (ComboBoxItem item in ThresholdComboBox.Items)
+            {
+                int curItem = int.Parse(item.Tag.ToString());
+                if (thresh >= curItem)
+                    ThresholdComboBox.SelectedItem = item;
+            }
+            TimePicker1.Time = new TimeSpan(sh, sm, 0);
+            TimePicker2.Time = new TimeSpan(eh, em, 0);
+            AvoidAppointmentsCheckBox.IsChecked = avoidAppts;
+            loadingFromSettings = false;
+        }
+
+        void RemoveBackgroundTask()
+        {
+            if (backgroundTask != null)
+            {
+                backgroundTask.Unregister(true);
+                BackgroundExecutionManager.RemoveAccess();
+            }
+            //UpdateUI();
+        }
+
+        async Task TrySetBackgroundTask()
+        {
+            backgroundTask = null;
+            foreach (var task in BackgroundTaskRegistration.AllTasks)
+            {
+                if (task.Value.Name == bgTaskName)
+                {
+                    backgroundTask = task.Value;
+                }
+            }
+
+            if (backgroundTask == null)
+            {
+                var status = await BackgroundExecutionManager.RequestAccessAsync();
+                if (status == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity || status == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
+                {
+                    var builder = new BackgroundTaskBuilder();
+                    builder.Name = bgTaskName;
+                    builder.TaskEntryPoint = "GetUpAndGoBackground.BackgroundAgent";
+                    builder.SetTrigger(new TimeTrigger(15, false));
+                    backgroundTask = builder.Register();
+                }
+            }
+            //UpdateUI();
         }
     }
 }

@@ -23,8 +23,6 @@
       <RootMethod Name="SetColumn" />
       <RootMethod Name="GetColumnSpan" />
       <RootMethod Name="SetColumnSpan" />
-      <RootMethod Name="GetRowSpan" />
-      <RootMethod Name="SetRowSpan" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.FlipView">
       <RootProperty Name="SelectedIndex" />
@@ -50,6 +48,7 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Width" />
       <RootProperty Name="Content" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="MinHeight" />
       <RootProperty Name="IsEnabled" />
       <RootEvent Name="Click" />
@@ -65,6 +64,15 @@
       <RootProperty Name="Stretch" />
     </RootType>
     <RootType FullName="GetUpAndGo.IntroPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="Opacity" />
+      <RootProperty Name="Fill" />
+      <RootProperty Name="Margin" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Margin" />
@@ -72,11 +80,6 @@
       <RootProperty Name="Content" />
       <RootEvent Name="Checked" />
       <RootEvent Name="Unchecked" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
-      <RootProperty Name="Opacity" />
-      <RootProperty Name="Fill" />
-      <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="ElementName" />
@@ -93,7 +96,6 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="Items" />
       <RootEvent Name="SelectionChanged" />
-      <RootEvent Name="IsEnabledChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
       <RootProperty Name="Tag" />
