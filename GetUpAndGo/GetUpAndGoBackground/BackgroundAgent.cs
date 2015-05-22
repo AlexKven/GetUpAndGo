@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Background;
 using Windows.Storage;
+using Windows.UI.Popups;
 
 namespace GetUpAndGoBackground
 {
@@ -19,7 +20,9 @@ namespace GetUpAndGoBackground
       public async void Run(IBackgroundTaskInstance taskInstance)
       {
         var def = taskInstance.GetDeferral();
-        Debug.WriteLine("Background task started.");
+        MessageDialog d = new MessageDialog("Test");
+        //d.ShowAsync();
+        //Debug.WriteLine("Background task started.");
         var now = DateTime.Now;
         EnsureSettings();
         ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["BackgroundTaskRuns"] =
@@ -42,7 +45,7 @@ namespace GetUpAndGoBackground
           {
             using (IBandClient bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
             {
-              Debug.WriteLine("Band found in background.");
+              //Debug.WriteLine("Band found in background.");
               currentBandClient = bandClient;
               if (bandClient.SensorManager.Pedometer.IsSupported)
               {
@@ -70,11 +73,6 @@ namespace GetUpAndGoBackground
                       ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastReading"] = currentReading.Value;
                       ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastPrompt"] = now.ToString();
                       ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["LastActive"] = now.ToString();
-#if DEBUG
-                      Guid myTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
-                      // Send a notification.
-                      await bandClient.NotificationManager.SendMessageAsync(myTileId, "Don't go for a walk!", "You have taken " + (currentReading - lastReading) + " steps in the last " + ((int)(now - lastPrompt).TotalMinutes).ToString() + " minutes.", DateTimeOffset.Now, MessageFlags.ShowDialog);
-#endif
                     }
                     else
                     {
@@ -88,14 +86,6 @@ namespace GetUpAndGoBackground
                         ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["NumberOfPrompts"] =
                             (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["NumberOfPrompts"] + 1;
                       }
-#if DEBUG
-                      else
-                      {
-                          Guid myTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
-                          // Send a notification.
-                          await bandClient.NotificationManager.SendMessageAsync(myTileId, "Don't go for a walk!", "You have taken " + (currentReading - lastReading) + " steps in the last " + ((int)(now - lastPrompt).TotalMinutes).ToString() + " minutes.", DateTimeOffset.Now, MessageFlags.ShowDialog);
-                      }
-#endif
                     }
                   }
                 }
@@ -104,7 +94,7 @@ namespace GetUpAndGoBackground
             }
           }
         }
-        Debug.WriteLine("Background task exited.");
+        //Debug.WriteLine("Background task exited.");
         def.Complete();
       }
 

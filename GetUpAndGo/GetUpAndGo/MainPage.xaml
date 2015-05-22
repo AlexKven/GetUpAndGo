@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
             <Rectangle Margin="5" Fill="Purple"/>
             <Image VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="///Assets/Band/IconLarge.png"/>
-            <Button x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="PinButton_Click"/>
+            <Button x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Band Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="PinButton_Click"/>
             <TextBlock x:Name="MessageBlock" Margin="4.833,3,5,0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
         </Grid>
         <Grid Margin="0, 10, 0, 10" Grid.Row="2">
@@ -99,7 +99,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5">Help/About</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" Click="AboutButton_Click">Help/About</Button>
             <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Margin="5">Rate/Review</Button>
         </Grid>
         <TextBlock Grid.Row="5" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="16">Due to limitations of the operating system, exact prompt times may be up to 15 minutes later than intended.</TextBlock>

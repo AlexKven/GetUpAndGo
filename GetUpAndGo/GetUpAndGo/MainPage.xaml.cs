@@ -21,6 +21,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.ApplicationModel.Background;
 using Windows.Media;
+using GetUpAndGo.Common;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -31,54 +32,92 @@ namespace GetUpAndGo
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        #region Fields
-        const string bgTaskName = "GetUpAndGoBackgroundAgent";
-        IBandInfo currentBand;
-        IBackgroundTaskRegistration backgroundTask;
-        bool tilePinned = true;
-        bool loadingFromSettings = true;
-
-        Guid bandTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
-        BandTile bandTile;
-        #endregion
-
-        #region Constructor & Navigation
         public MainPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
+            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
             loadFromSettings();
         }
 
+        #region Fields
+        const string bgTaskName = "GetUpAndGoBackgroundAgent";
+        IBandInfo currentBand;
+        IBackgroundTaskRegistration backgroundTask;
+        bool tilePinned = false;
+        bool loadingFromSettings = true;
+        IBandClient bandClient;
+
+        Guid bandTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
+        const string noTileMessage = "Click the \"Pin Band Tile\" button above to pin the tile to your Band before you continue.";
+        BandTile bandTile;
+        #endregion
+
+        #region Navigation
+        private NavigationHelper navigationHelper;
+        private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            loadingMessage = true;
-            string msg = await detectBand();
-            if (msg == null)
-                MessageBlock.Text = "Connected to " + currentBand.Name;
-            else
-                MessageBlock.Text = "Not connected to a Band.";
-            bandErrorMessage = msg;
-
-            loadingMessage = false;
+            this.navigationHelper.OnNavigatedTo(e);
+            if (bandClient == null)
+            {
+                loadingMessage = true;
+                await DetectBandAndUI();
+                await RefreshBackgroundTaskAndUI();
+                await RefreshPinnedTileAndUI();
+                loadingMessage = false;
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            base.OnNavigatedFrom(e);
+            this.navigationHelper.OnNavigatedFrom(e);
+        }
+
+        public NavigationHelper NavigationHelper
+        {
+            get { return this.navigationHelper; }
+        }
+
+        public ObservableDictionary DefaultViewModel
+        {
+            get { return this.defaultViewModel; }
+        }
+
+        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        {
+        }
+
+        private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        {
         }
         #endregion
 
         #region Button Press Handlers
         private async void PinButton_Click(object sender, RoutedEventArgs e)
         {
+            await TryPinTileAndUI();
+        }
+
+        private async void RefreshBandButton_Click(object sender, RoutedEventArgs e)
+        {
+            loadingMessage = true;
+            await DetectBandAndUI();
+            loadingMessage = false;
         }
 
         private async void RegisterBackgroundAgentButton_Click(object sender, RoutedEventArgs e)
         {
+            loadingMessage = true;
             RemoveBackgroundTask();
-            await TrySetBackgroundTask();
-            //UpdateUI();
+            await RefreshBackgroundTaskAndUI();
+            loadingMessage = false;
         }
         #endregion
 
@@ -161,7 +200,7 @@ namespace GetUpAndGo
             }
         }
 
-        private string _tileErrorMessage;
+        private string _tileErrorMessage = noTileMessage;
         private string tileErrorMessage
         {
             get { return _tileErrorMessage; }
@@ -197,9 +236,77 @@ namespace GetUpAndGo
             }
             FrequencyComboBox.IsEnabled = !message;
             ErrorPopup.Visibility = message ? Visibility.Visible : Visibility.Collapsed;
+            SetPinButtonFunctionality();
         }
 
+        private async Task RefreshBackgroundTaskAndUI()
+        {
 
+            backgroundTaskErrorMessage = await TrySetBackgroundTask();
+            BackgroundTaskErrorRow.Height = (backgroundTaskErrorMessage == null) ? new GridLength(0) : GridLength.Auto;
+        }
+
+        private async Task DetectBandAndUI()
+        {
+            string msg = await detectBand();
+            if (msg == null)
+                MessageBlock.Text = "Connected to " + currentBand.Name;
+            else
+                MessageBlock.Text = "Not connected to a Band.";
+            bandErrorMessage = msg;
+        }
+
+        private async Task RefreshPinnedTileAndUI()
+        {
+            try
+            {
+                using (bandClient = await BandClientManager.Instance.ConnectAsync(currentBand))
+                {
+                    bandTile = (await bandClient.TileManager.GetTilesAsync()).First(t => t.TileId == bandTileId);
+                    tilePinned = bandTile != null;
+                    tileErrorMessage = tilePinned ? null : noTileMessage;
+                }
+                bandClient = null;
+            }
+            catch (Exception) { }
+        }
+
+        private async Task TryPinTileAndUI()
+        {
+            loadingMessage = true;
+            tileErrorMessage = await TryPinTile();
+            
+            await RefreshPinnedTileAndUI();
+            loadingMessage = false;
+        }
+
+        private void SetPinButtonFunctionality()
+        {
+            if (loadingMessage) PinButton.IsEnabled = false;
+            else
+            {
+                PinButton.IsEnabled = true;
+                if (bandErrorMessage != null)
+                {
+                    PinButton.Content = "Retry Finding Band";
+                    PinButton.Click -= new RoutedEventHandler(PinButton_Click);
+                    PinButton.Click += new RoutedEventHandler(RefreshBandButton_Click);
+                }
+                else if (tilePinned)
+                {
+                    PinButton.Content = "Tile Already Pinned";
+                    PinButton.Click -= new RoutedEventHandler(PinButton_Click);
+                    PinButton.Click -= new RoutedEventHandler(RefreshBandButton_Click);
+                    PinButton.IsEnabled = false;
+                }
+                else
+                {
+                    PinButton.Content = "Pin Band Tile";
+                    PinButton.Click -= new RoutedEventHandler(RefreshBandButton_Click);
+                    PinButton.Click += new RoutedEventHandler(PinButton_Click);
+                }
+            }
+        }
         #endregion
 
         #region Band Interfacing Functions
@@ -209,10 +316,11 @@ namespace GetUpAndGo
             if (pairedBands.Length == 0) return "No Microsoft Band is set up for this phone.";
             try
             {
-                using (IBandClient bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
+                using (bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
                 {
-
+                    
                 }
+                bandClient = null;
             }
             catch (Exception ex)
             {
@@ -274,9 +382,12 @@ namespace GetUpAndGo
             //UpdateUI();
         }
 
-        async Task TrySetBackgroundTask()
+        async Task<string> TrySetBackgroundTask()
         {
-            backgroundTask = null;
+            if (backgroundTask != null)
+            {
+                backgroundTask.Unregister(true);
+            }
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
                 if (task.Value.Name == bgTaskName)
@@ -296,8 +407,41 @@ namespace GetUpAndGo
                     builder.SetTrigger(new TimeTrigger(15, false));
                     backgroundTask = builder.Register();
                 }
+                else
+                {
+                    return "Background task access status is " + status.ToString() + ". Try going into the Battery Saver app and turning off some background apps and setting Walk Reminder to \"Allowed\".";
+                }
             }
-            //UpdateUI();
+            return null;
+        }
+
+        async Task<string> TryPinTile()
+        {
+            try
+            {
+                using (bandClient = await BandClientManager.Instance.ConnectAsync(currentBand))
+                {
+                    if (await bandClient.TileManager.GetRemainingTileCapacityAsync() == 0)
+                        return "You already have the maximum number of tiles pinned to the Band. Unpin a tile in the Microsoft Health app first.";
+
+                    // Create a Tile.
+                    BandTile myTile = new BandTile(bandTileId)
+                    {
+                        Name = "Walk Reminder",
+                        TileIcon = await LoadIcon("ms-appx:///Assets/Band/IconLarge.png"),
+                        SmallIcon = await LoadIcon("ms-appx:///Assets/Band/IconSmall.png")
+                    };
+                    await bandClient.TileManager.AddTileAsync(myTile);
+                }
+                bandClient = null;
+            }
+            catch (Exception) { }
+            return "Please wait...\nIf you didn't get a screen asking you if you want to pin a tile, try again.";
+        }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AboutPage));
         }
     }
 }

@@ -148,15 +148,31 @@ namespace GetUpAndGo.GetUpAndGo_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[3];
-            _typeNameTable[0] = "GetUpAndGo.MainPage";
+            _typeNameTable = new string[11];
+            _typeNameTable[0] = "GetUpAndGo.AboutPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[3] = "GetUpAndGo.Common.NavigationHelper";
+            _typeNameTable[4] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[5] = "GetUpAndGo.Common.ObservableDictionary";
+            _typeNameTable[6] = "Object";
+            _typeNameTable[7] = "String";
+            _typeNameTable[8] = "GetUpAndGo.BasicPage1";
+            _typeNameTable[9] = "GetUpAndGo.IntroPage";
+            _typeNameTable[10] = "GetUpAndGo.MainPage";
 
-            _typeTable = new global::System.Type[3];
-            _typeTable[0] = typeof(global::GetUpAndGo.MainPage);
+            _typeTable = new global::System.Type[11];
+            _typeTable[0] = typeof(global::GetUpAndGo.AboutPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[3] = typeof(global::GetUpAndGo.Common.NavigationHelper);
+            _typeTable[4] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[5] = typeof(global::GetUpAndGo.Common.ObservableDictionary);
+            _typeTable[6] = typeof(global::System.Object);
+            _typeTable[7] = typeof(global::System.String);
+            _typeTable[8] = typeof(global::GetUpAndGo.BasicPage1);
+            _typeTable[9] = typeof(global::GetUpAndGo.IntroPage);
+            _typeTable[10] = typeof(global::GetUpAndGo.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -191,7 +207,18 @@ namespace GetUpAndGo.GetUpAndGo_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_MainPage() { return new global::GetUpAndGo.MainPage(); }
+        private object Activate_0_AboutPage() { return new global::GetUpAndGo.AboutPage(); }
+        private object Activate_5_ObservableDictionary() { return new global::GetUpAndGo.Common.ObservableDictionary(); }
+        private object Activate_8_BasicPage1() { return new global::GetUpAndGo.BasicPage1(); }
+        private object Activate_9_IntroPage() { return new global::GetUpAndGo.IntroPage(); }
+        private object Activate_10_MainPage() { return new global::GetUpAndGo.MainPage(); }
+        private void MapAdd_5_ObservableDictionary(object instance, object key, object item)
+        {
+            var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
+            var newKey = (global::System.String)key;
+            var newItem = (global::System.Object)item;
+            collection.Add(newKey, newItem);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -203,9 +230,11 @@ namespace GetUpAndGo.GetUpAndGo_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  GetUpAndGo.MainPage
+            case 0:   //  GetUpAndGo.AboutPage
                 userType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_MainPage;
+                userType.Activator = Activate_0_AboutPage;
+                userType.AddMemberName("NavigationHelper");
+                userType.AddMemberName("DefaultViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -216,6 +245,60 @@ namespace GetUpAndGo.GetUpAndGo_XamlTypeInfo
 
             case 2:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 3:   //  GetUpAndGo.Common.NavigationHelper
+                userType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 4:   //  Windows.UI.Xaml.DependencyObject
+                xamlType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  GetUpAndGo.Common.ObservableDictionary
+                userType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.DictionaryAdd = MapAdd_5_ObservableDictionary;
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  Object
+                xamlType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  String
+                xamlType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 8:   //  GetUpAndGo.BasicPage1
+                userType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_BasicPage1;
+                userType.AddMemberName("NavigationHelper");
+                userType.AddMemberName("DefaultViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  GetUpAndGo.IntroPage
+                userType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_9_IntroPage;
+                userType.AddMemberName("NavigationHelper");
+                userType.AddMemberName("DefaultViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  GetUpAndGo.MainPage
+                userType = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_10_MainPage;
+                userType.AddMemberName("NavigationHelper");
+                userType.AddMemberName("DefaultViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
                 break;
             }
             return xamlType;
@@ -277,11 +360,103 @@ namespace GetUpAndGo.GetUpAndGo_XamlTypeInfo
             return foundXamlType;
         }
 
+        private object get_0_AboutPage_NavigationHelper(object instance)
+        {
+            var that = (global::GetUpAndGo.AboutPage)instance;
+            return that.NavigationHelper;
+        }
+        private object get_1_AboutPage_DefaultViewModel(object instance)
+        {
+            var that = (global::GetUpAndGo.AboutPage)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_2_BasicPage1_NavigationHelper(object instance)
+        {
+            var that = (global::GetUpAndGo.BasicPage1)instance;
+            return that.NavigationHelper;
+        }
+        private object get_3_BasicPage1_DefaultViewModel(object instance)
+        {
+            var that = (global::GetUpAndGo.BasicPage1)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_4_IntroPage_NavigationHelper(object instance)
+        {
+            var that = (global::GetUpAndGo.IntroPage)instance;
+            return that.NavigationHelper;
+        }
+        private object get_5_IntroPage_DefaultViewModel(object instance)
+        {
+            var that = (global::GetUpAndGo.IntroPage)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_6_MainPage_NavigationHelper(object instance)
+        {
+            var that = (global::GetUpAndGo.MainPage)instance;
+            return that.NavigationHelper;
+        }
+        private object get_7_MainPage_DefaultViewModel(object instance)
+        {
+            var that = (global::GetUpAndGo.MainPage)instance;
+            return that.DefaultViewModel;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "GetUpAndGo.AboutPage.NavigationHelper":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.AboutPage");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "NavigationHelper", "GetUpAndGo.Common.NavigationHelper");
+                xamlMember.Getter = get_0_AboutPage_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "GetUpAndGo.AboutPage.DefaultViewModel":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.AboutPage");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "GetUpAndGo.Common.ObservableDictionary");
+                xamlMember.Getter = get_1_AboutPage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "GetUpAndGo.BasicPage1.NavigationHelper":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.BasicPage1");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "NavigationHelper", "GetUpAndGo.Common.NavigationHelper");
+                xamlMember.Getter = get_2_BasicPage1_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "GetUpAndGo.BasicPage1.DefaultViewModel":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.BasicPage1");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "GetUpAndGo.Common.ObservableDictionary");
+                xamlMember.Getter = get_3_BasicPage1_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "GetUpAndGo.IntroPage.NavigationHelper":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.IntroPage");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "NavigationHelper", "GetUpAndGo.Common.NavigationHelper");
+                xamlMember.Getter = get_4_IntroPage_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "GetUpAndGo.IntroPage.DefaultViewModel":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.IntroPage");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "GetUpAndGo.Common.ObservableDictionary");
+                xamlMember.Getter = get_5_IntroPage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "GetUpAndGo.MainPage.NavigationHelper":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.MainPage");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "NavigationHelper", "GetUpAndGo.Common.NavigationHelper");
+                xamlMember.Getter = get_6_MainPage_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "GetUpAndGo.MainPage.DefaultViewModel":
+                userType = (global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlUserType)GetXamlTypeByName("GetUpAndGo.MainPage");
+                xamlMember = new global::GetUpAndGo.GetUpAndGo_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "GetUpAndGo.Common.ObservableDictionary");
+                xamlMember.Getter = get_7_MainPage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            }
             return xamlMember;
         }
     }
@@ -606,8 +781,6 @@ namespace GetUpAndGo.GetUpAndGo_XamlTypeInfo
         }
     }
 }
-
-
 
 
 
