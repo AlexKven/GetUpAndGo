@@ -195,5 +195,11 @@
     <MainPackageIdentityName>16469AlexKven.ABi</MainPackageIdentityName>
     <MainPackageIdentityName>16469AlexKven.VirtualMathematicianGrapher</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=e5514328-1dc2-4422-b873-61ddc3720f95" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=e5514328-1dc2-4422-b873-61ddc3720f95">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.1</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>
