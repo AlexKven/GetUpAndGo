@@ -125,7 +125,7 @@ namespace GetUpAndGo
         #region Settings Control Event Handlers
         private void FrequencyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Frequency"] = int.Parse(((ComboBoxItem)FrequencyComboBox.SelectedItem).Tag.ToString());
+            SettingsManager.SetSetting<int>("Frequency", int.Parse(((ComboBoxItem)FrequencyComboBox.SelectedItem).Tag.ToString()));
         }
 
         private void TimePicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
@@ -144,26 +144,26 @@ namespace GetUpAndGo
                     start = TimePicker2.Time;
                     end = TimePicker1.Time;
                 }
-                ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartHour"] = start.Hours;
-                ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartMinute"] = start.Minutes;
-                ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndHour"] = end.Hours;
-                ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndMinute"] = end.Minutes;
+                SettingsManager.SetSetting<int>("StartHour", start.Hours);
+                SettingsManager.SetSetting<int>("StartMinute", start.Minutes);
+                SettingsManager.SetSetting<int>("EndHour", end.Hours);
+                SettingsManager.SetSetting<int>("EndMinute", end.Minutes);
             }
         }
 
         private void ThresholdComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Threshold"] = int.Parse(((ComboBoxItem)ThresholdComboBox.SelectedItem).Tag.ToString());
+            SettingsManager.SetSetting<int>("Threshold", int.Parse(((ComboBoxItem)ThresholdComboBox.SelectedItem).Tag.ToString()));
         }
 
         private void AvoidAppointmentsCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["AvoidAppointments"] = true;
+            SettingsManager.SetSetting<bool>("AvoidAppointments", true);
         }
 
         private void AvoidAppointmentsCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["AvoidAppointments"] = false;
+            SettingsManager.SetSetting<bool>("AvoidAppointments", false);
         }
         #endregion
 
@@ -348,13 +348,13 @@ namespace GetUpAndGo
         void loadFromSettings()
         {
             loadingFromSettings = true;
-            int sh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartHour"];
-            int sm = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartMinute"];
-            int eh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndHour"];
-            int em = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndMinute"];
-            int freq = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Frequency"];
-            int thresh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["Threshold"];
-            bool avoidAppts = (bool)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["AvoidAppointments"];
+            int sh = SettingsManager.GetSetting<int>("StartHour");
+            int sm = SettingsManager.GetSetting<int>("StartMinute");
+            int eh = SettingsManager.GetSetting<int>("EndHour");
+            int em = SettingsManager.GetSetting<int>("EndMinute");
+            int freq = SettingsManager.GetSetting<int>("Frequency");
+            int thresh = SettingsManager.GetSetting<int>("Threshold");
+            bool avoidAppts = SettingsManager.GetSetting<bool>("AvoidAppointments");
             foreach (ComboBoxItem item in FrequencyComboBox.Items)
             {
                 int curItem = int.Parse(item.Tag.ToString());

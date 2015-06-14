@@ -3,11 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonFunctions", "CommonFunctions\CommonFunctions.shproj", "{8AAF86FB-AD2B-4EDA-9D8A-9BF5F94BD97D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetUpAndGo", "GetUpAndGo\GetUpAndGo.csproj", "{E1A39755-435F-458A-AB97-67BBB1453286}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetUpAndGoBackground", "GetUpAndGoBackground\GetUpAndGoBackground.csproj", "{89769A4F-79BF-43FF-B899-91533684527C}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CommonFunctions\CommonFunctions.projitems*{8aaf86fb-ad2b-4eda-9d8a-9bf5f94bd97d}*SharedItemsImports = 13
+		CommonFunctions\CommonFunctions.projitems*{e1a39755-435f-458a-ab97-67bbb1453286}*SharedItemsImports = 4
+		CommonFunctions\CommonFunctions.projitems*{89769a4f-79bf-43ff-b899-91533684527c}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM

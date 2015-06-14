@@ -1,7 +1,7 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="c:\users\alexander\documents\github\getupandgo\getupandgo\getupandgo\obj\debug\intermediatexaml\getupandgo.exe" HashGuid="c10465ef-a3ab-ce63-cbfb-a5bab5c4c208" />
-    <ReferenceAssembly PathName="c:\users\alexander\documents\github\getupandgo\getupandgo\getupandgobackground\bin\debug\getupandgobackground.winmd" HashGuid="ca545033-beb7-71b3-f7bd-ab7a86e244fb" />
+    <LocalAssembly PathName="c:\users\alexander\documents\github\getupandgo\getupandgo\getupandgo\obj\debug\intermediatexaml\getupandgo.exe" HashGuid="464fb064-f6c0-cdf8-00b8-3541286bcf97" />
+    <ReferenceAssembly PathName="c:\users\alexander\documents\github\getupandgo\getupandgo\getupandgobackground\bin\debug\getupandgobackground.winmd" HashGuid="c6681fcc-24a1-9ff3-1c4a-9661fae9b5c3" />
     <ReferenceAssembly PathName="c:\users\alexander\documents\github\getupandgo\getupandgo\packages\microsoft.band.1.3.10417\lib\wpa81\microsoft.band.dll" HashGuid="b0e497f3-8be0-2843-c64c-3921d3a98795" />
     <ReferenceAssembly PathName="c:\users\alexander\documents\github\getupandgo\getupandgo\packages\microsoft.band.1.3.10417\lib\wpa81\microsoft.band.phone.dll" HashGuid="3fad5424-e369-ec78-3700-281a92bba8f8" />
     <ReferenceAssembly PathName="c:\users\alexander\documents\github\getupandgo\getupandgo\packages\microsoft.band.1.3.10417\lib\wpa81\microsoft.band.store.dll" HashGuid="44440445-1941-ea24-e2b1-c8110ed82a09" />

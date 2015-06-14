@@ -56,6 +56,8 @@
     </Extension>
   </Extensions>
   <build:Metadata>
+    <build:Item Name="SharedGUID" Value="8aaf86fb-ad2b-4eda-9d8a-9bf5f94bd97d" />
+    <build:Item Name="CodeSharingProject" Value="248F659F-DAC5-46E8-AC09-60EC9FC95053" />
     <build:Item Name="TargetFrameworkMoniker" Value="WindowsPhoneApp,Version=v8.1" />
     <build:Item Name="VisualStudio" Version="12.0" />
     <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Professional 2013" />

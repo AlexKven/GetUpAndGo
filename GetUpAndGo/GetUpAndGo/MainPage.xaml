@@ -88,7 +88,7 @@
                     <TextBlock FontSize="32" VerticalAlignment="Center" Grid.Column="1" Margin="5">and</TextBlock>
                     <TimePicker x:Name="TimePicker2" TimeChanged="TimePicker_TimeChanged" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5" Grid.Column="2"/>
                 </Grid>
-                <CheckBox x:Name="AvoidAppointmentsCheckBox" Checked="AvoidAppointmentsCheckBox_Checked" Unchecked="AvoidAppointmentsCheckBox_Unchecked" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="0, 10, 0, 10" Grid.Row="4" IsChecked="true">
+                <CheckBox x:Name="AvoidAppointmentsCheckBox" Checked="AvoidAppointmentsCheckBox_Checked" Unchecked="AvoidAppointmentsCheckBox_Unchecked" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="0, 10, 0, 10" Grid.Row="4">
                     <TextBlock TextWrapping="WrapWholeWords" FontSize="22">Don't prompt me if I'm in the middle of a calendar appointment.</TextBlock>
                 </CheckBox>
                 <Button Grid.Row="5" Click="RegisterBackgroundAgentButton_Click" HorizontalAlignment="Center">Manually Reset Background Task</Button>
