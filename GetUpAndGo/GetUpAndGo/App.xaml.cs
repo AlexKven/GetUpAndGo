@@ -52,9 +52,8 @@ namespace GetUpAndGo
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            GetUpAndGoBackground.BackgroundAgent.EnsureSettings();
-            ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["ApplicationRuns"] =
-                (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["ApplicationRuns"] + 1;
+            SettingsManager.EnsureSettings();
+            SettingsManager.IncrementSetting("ApplicationRuns");
 
             Frame rootFrame = Window.Current.Content as Frame;
             Type initialPageType = typeof(MainPage);

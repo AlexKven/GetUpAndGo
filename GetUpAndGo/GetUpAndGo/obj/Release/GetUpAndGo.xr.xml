@@ -89,7 +89,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="IsChecked" />
       <RootProperty Name="Content" />
       <RootEvent Name="Checked" />
       <RootEvent Name="Unchecked" />

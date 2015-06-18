@@ -38,7 +38,6 @@ namespace GetUpAndGo
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
@@ -242,7 +241,6 @@ namespace GetUpAndGo
 
         private async Task RefreshBackgroundTaskAndUI()
         {
-
             backgroundTaskErrorMessage = await TrySetBackgroundTask();
             BackgroundTaskErrorRow.Height = (backgroundTaskErrorMessage == null) ? new GridLength(0) : GridLength.Auto;
         }
@@ -370,6 +368,7 @@ namespace GetUpAndGo
             TimePicker1.Time = new TimeSpan(sh, sm, 0);
             TimePicker2.Time = new TimeSpan(eh, em, 0);
             AvoidAppointmentsCheckBox.IsChecked = avoidAppts;
+            LastErrorBlock.Text = SettingsManager.GetSetting<string>("LastError") ?? "";
             loadingFromSettings = false;
         }
 
@@ -388,6 +387,7 @@ namespace GetUpAndGo
             if (backgroundTask != null)
             {
                 backgroundTask.Unregister(true);
+                backgroundTask = null;
             }
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
