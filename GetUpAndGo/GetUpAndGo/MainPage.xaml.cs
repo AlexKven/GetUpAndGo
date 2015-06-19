@@ -391,17 +391,23 @@ namespace GetUpAndGo
 
         async Task<string> TrySetBackgroundTask()
         {
-            if (backgroundTask != null)
-            {
-                backgroundTask.Unregister(true);
-                backgroundTask = null;
-            }
+            //if (backgroundTask != null)
+            //{
+            //    backgroundTask.Unregister(true);
+            //    backgroundTask = null;
+            //}
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
                 if (task.Value.Name == bgTaskName)
                 {
                     backgroundTask = task.Value;
                 }
+            }
+            if (SettingsManager.GetSetting<double>("LastBackgroundTaskReset") != 1.3 && backgroundTask != null)
+            {
+                SettingsManager.SetSetting<double>("LastBackgroundTaskReset", 1.3);
+                BackgroundExecutionManager.RemoveAccess();
+                backgroundTask = null;
             }
 
             if (backgroundTask == null)

@@ -7,7 +7,7 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="16469AlexKven.GoforaWalk" Publisher="CN=81569EFF-4F9B-4E3C-ABA4-C4271AC0D1B2" Version="1.2.1.2" ProcessorArchitecture="neutral" />
+  <Identity Name="16469AlexKven.GoforaWalk" Publisher="CN=81569EFF-4F9B-4E3C-ABA4-C4271AC0D1B2" Version="1.3.2.5" ProcessorArchitecture="neutral" />
   <mp:PhoneIdentity PhoneProductId="70867d3b-7a30-4d35-b98a-53a356ab361b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Walk Reminder</DisplayName>
@@ -61,7 +61,7 @@
     <build:Item Name="TargetFrameworkMoniker" Value="WindowsPhoneApp,Version=v8.1" />
     <build:Item Name="VisualStudio" Version="12.0" />
     <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Professional 2013" />
-    <build:Item Name="OperatingSystem" Version="10.0.10074.0 (fbl_impressive.150424-1350)" />
+    <build:Item Name="OperatingSystem" Version="10.0.10130.0 (fbl_impressive.150522-2224)" />
     <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="12.0.31101.0" />
     <build:Item Name="ProjectGUID" Value="{E1A39755-435F-458A-AB97-67BBB1453286}" />
     <build:Item Name="Microsoft.Windows.UI.Xaml.Build.Tasks.dll" Version="12.0.30501.0" />

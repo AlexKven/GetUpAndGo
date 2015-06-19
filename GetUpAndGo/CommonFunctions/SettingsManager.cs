@@ -46,10 +46,12 @@ namespace GetUpAndGo
         {
             //ApplicationData.Current.LocalSettings.DeleteContainer("MainContainer");
             //SetSetting<double>("Version", 1.1);
+            //SetRoamingSetting<string>("TrialExpiration", new DateTime(9999, 12, 31).ToString());
             if (!ApplicationData.Current.LocalSettings.Containers.ContainsKey("MainContainer"))
             {
                 ApplicationData.Current.LocalSettings.CreateContainer("MainContainer", ApplicationDataCreateDisposition.Always);
                 SetSetting<double>("Version", 1.0);
+                SetSetting<double>("LastBackgroundTaskReset", 1.0);
                 SetSetting<int>("Frequency", 30);
                 SetSetting<int>("Threshold", 30);
                 SetSetting<int>("StartHour", 7);
@@ -79,9 +81,9 @@ namespace GetUpAndGo
                 SetSetting<int>("NumberOfPrompts", 0);
                 SetSetting<double>("LastVersionRun", 1.0);
             }
-            if (GetSetting<double>("Version") < 1.2)
+            if (GetSetting<double>("Version") < 1.3)
             {
-                SetSetting<double>("Version", 1.2);
+                SetSetting<double>("Version", 1.3);
                 SetSetting<bool>("TrialExpiredMessageSent", false);
                 SetSetting<bool>("ReviewMessageSent", false);
             }
