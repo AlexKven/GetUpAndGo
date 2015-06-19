@@ -26,12 +26,12 @@
             </Grid.ColumnDefinitions>
             <Rectangle Margin="5" Fill="Purple"/>
             <Image VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="///Assets/Band/IconLarge.png"/>
-            <Button x:ConnectionId='10' x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Band Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch"                        />
+            <Button x:ConnectionId='11' x:Name="PinButton" Grid.Column="1" IsEnabled="False" Content="Pin Band Tile" HorizontalAlignment="Left" VerticalAlignment="Stretch"                        />
             <TextBlock x:Name="MessageBlock" Margin="4.833,3,5,0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="20" TextWrapping="WrapWholeWords">Looking for a Microsoft Band...</TextBlock>
         </Grid>
         <Grid Margin="0, 10, 0, 10" Grid.Row="2">
             <TextBlock FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Couldn't set background task.</TextBlock>
-            <Button x:ConnectionId='9' Content="Try Again" MinHeight="0" HorizontalAlignment="Right" VerticalAlignment="Top"                                            />
+            <Button x:ConnectionId='10' Content="Try Again" MinHeight="0" HorizontalAlignment="Right" VerticalAlignment="Top"                                            />
         </Grid>
         <ScrollViewer VerticalAlignment="Stretch" Grid.Row="3">
             <Grid>
@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Prompt me to get up and walk every...</TextBlock>
-                    <ComboBox x:ConnectionId='8' x:Name="FrequencyComboBox"                                                       Grid.Column="1" Width="150" Margin="5">
+                    <ComboBox x:ConnectionId='9' x:Name="FrequencyComboBox"                                                       Grid.Column="1" Width="150" Margin="5">
                         <ComboBoxItem Tag="20" Content="15-30 minutes"/>
                         <ComboBoxItem Tag="35" Content="30-45 Minutes"/>
                         <ComboBoxItem Tag="50" Content="45-55 Minutes"/>
@@ -65,7 +65,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">if I didn't take more than...</TextBlock>
-                    <ComboBox x:ConnectionId='7' x:Name="ThresholdComboBox"                                                       IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Grid.Column="1" Width="150" Margin="5">
+                    <ComboBox x:ConnectionId='8' x:Name="ThresholdComboBox"                                                       IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Grid.Column="1" Width="150" Margin="5">
                         <ComboBoxItem Tag="0" Content="0 Steps"/>
                         <ComboBoxItem Tag="10" Content="10 Steps"/>
                         <ComboBoxItem Tag="25" Content="25 Steps"/>
@@ -85,14 +85,14 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TimePicker x:ConnectionId='5' x:Name="TimePicker1"                                      IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5"/>
+                    <TimePicker x:ConnectionId='6' x:Name="TimePicker1"                                      IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5"/>
                     <TextBlock FontSize="32" VerticalAlignment="Center" Grid.Column="1" Margin="5">and</TextBlock>
-                    <TimePicker x:ConnectionId='6' x:Name="TimePicker2"                                      IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5" Grid.Column="2"/>
+                    <TimePicker x:ConnectionId='7' x:Name="TimePicker2"                                      IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="5" Grid.Column="2"/>
                 </Grid>
-                <CheckBox x:ConnectionId='3' x:Name="AvoidAppointmentsCheckBox"                                                                                             IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="0, 10, 0, 10" Grid.Row="4">
+                <CheckBox x:ConnectionId='4' x:Name="AvoidAppointmentsCheckBox"                                                                                             IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Margin="0, 10, 0, 10" Grid.Row="4">
                     <TextBlock TextWrapping="WrapWholeWords" FontSize="22">Don't prompt me if I'm in the middle of a calendar appointment.</TextBlock>
                 </CheckBox>
-                <Button x:ConnectionId='4' Grid.Row="5"                                             HorizontalAlignment="Center">Manually Reset Background Task</Button>
+                <Button x:ConnectionId='5' Grid.Row="5"                                             HorizontalAlignment="Center">Manually Reset Background Task</Button>
                 <TextBlock Margin="5" Grid.Row="6" x:Name="LastErrorBlock"/>
             </Grid>
         </ScrollViewer>
@@ -101,13 +101,23 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:ConnectionId='1' VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5"                          >Help/About</Button>
-            <Button x:ConnectionId='2' VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Margin="5"                                  >Rate/Review</Button>
+            <Button x:ConnectionId='2' VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5"                          >Help/About</Button>
+            <Button x:ConnectionId='3' VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Margin="5"                                  >Rate/Review</Button>
         </Grid>
         <TextBlock Grid.Row="5" HorizontalAlignment="Left" TextWrapping="WrapWholeWords" FontSize="12">Due to limitations of the operating system, actual prompt times may be prompt times may be earlier or later than intended.</TextBlock>
         <Grid x:Name="ErrorPopup" Grid.Row="3" IsHitTestVisible="False">
             <Rectangle Opacity="0.9" Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
             <TextBlock x:Name="ErrorBlock" Margin="15" FontSize="26" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWholeWords">Loading...</TextBlock>
+        </Grid>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Row="1" Grid.RowSpan="5" x:Name="TrialExpiredGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="48">Trial Expired!</TextBlock>
+            <TextBlock Grid.Row="1" FontSize="32" Margin="0, 10, 0, 10" TextWrapping="WrapWholeWords">Please purchase Walk Reminder for $.99 to continue using it.</TextBlock>
+            <Button x:ConnectionId='1' VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2"                             >Purchase Walk Reminder</Button>
         </Grid>
     </Grid>
 </Page>

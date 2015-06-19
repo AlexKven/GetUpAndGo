@@ -65,6 +65,10 @@ namespace GetUpAndGo
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            if (SettingsManager.TrialExpired)
+            {
+                TrialExpiredGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
             if (bandClient == null)
             {
                 loadingMessage = true;
@@ -186,6 +190,7 @@ namespace GetUpAndGo
             {
                 _bandErrorMessage = value;
                 setErrorMessage();
+                
             }
         }
 
@@ -368,7 +373,9 @@ namespace GetUpAndGo
             TimePicker1.Time = new TimeSpan(sh, sm, 0);
             TimePicker2.Time = new TimeSpan(eh, em, 0);
             AvoidAppointmentsCheckBox.IsChecked = avoidAppts;
+#if DEBUG
             LastErrorBlock.Text = SettingsManager.GetSetting<string>("LastError") ?? "";
+#endif
             loadingFromSettings = false;
         }
 
@@ -448,6 +455,13 @@ namespace GetUpAndGo
         private async void RateAndReviewButton_Click(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
+        }
+
+        private async void PurchaseButton_Click(object sender, RoutedEventArgs e)
+        {
+            await CurrentAppSimulator.RequestAppPurchaseAsync(false);
+            SettingsManager.RefreshTrial();
+            TrialExpiredGrid.Visibility = CurrentAppSimulator.LicenseInformation.IsTrial ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

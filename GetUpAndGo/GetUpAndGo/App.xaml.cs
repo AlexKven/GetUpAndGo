@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Store;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -54,6 +55,7 @@ namespace GetUpAndGo
 #endif
             SettingsManager.EnsureSettings();
             SettingsManager.IncrementSetting("ApplicationRuns");
+            SettingsManager.RefreshTrial();
 
             Frame rootFrame = Window.Current.Content as Frame;
             Type initialPageType = typeof(MainPage);

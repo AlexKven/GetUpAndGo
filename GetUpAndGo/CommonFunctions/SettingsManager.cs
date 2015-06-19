@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.ApplicationModel.Store;
 using Windows.Storage;
 
 namespace GetUpAndGo
@@ -10,6 +11,20 @@ namespace GetUpAndGo
         public static T GetSetting<T>(string settingName)
         {
             object result = ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values[settingName];
+            if (result == null) return default(T);
+            return (T)result;
+        }
+
+        public static void SetRoamingSetting<T>(string settingName, T value)
+        {
+            if (!ApplicationData.Current.RoamingSettings.Containers["MainContainer"].Values.ContainsKey(settingName))
+                ApplicationData.Current.RoamingSettings.Containers["MainContainer"].Values.Add(settingName, value);
+            else
+                ApplicationData.Current.RoamingSettings.Containers["MainContainer"].Values[settingName] = value;
+        }
+        public static T GetRoamingSetting<T>(string settingName)
+        {
+            object result = ApplicationData.Current.RoamingSettings.Containers["MainContainer"].Values[settingName];
             if (result == null) return default(T);
             return (T)result;
         }
@@ -30,7 +45,7 @@ namespace GetUpAndGo
         public static void EnsureSettings()
         {
             //ApplicationData.Current.LocalSettings.DeleteContainer("MainContainer");
-            //SetSetting<double>("Version", 1.0);
+            //SetSetting<double>("Version", 1.1);
             if (!ApplicationData.Current.LocalSettings.Containers.ContainsKey("MainContainer"))
             {
                 ApplicationData.Current.LocalSettings.CreateContainer("MainContainer", ApplicationDataCreateDisposition.Always);
@@ -63,6 +78,37 @@ namespace GetUpAndGo
                 SetSetting<int>("BackgroundTaskRuns", 0);
                 SetSetting<int>("NumberOfPrompts", 0);
                 SetSetting<double>("LastVersionRun", 1.0);
+            }
+            if (GetSetting<double>("Version") < 1.2)
+            {
+                SetSetting<double>("Version", 1.2);
+                SetSetting<bool>("TrialExpiredMessageSent", false);
+                SetSetting<bool>("ReviewMessageSent", false);
+            }
+            if (!ApplicationData.Current.RoamingSettings.Containers.ContainsKey("MainContainer"))
+                ApplicationData.Current.RoamingSettings.CreateContainer("MainContainer", ApplicationDataCreateDisposition.Always);
+            if (GetRoamingSetting<string>("TrialExpiration") == null)
+                SetRoamingSetting<string>("TrialExpiration", new DateTime(1, 1, 1).ToString());
+        }
+
+        public static bool TrialExpired
+        {
+            get
+            {
+                return DateTime.Parse(SettingsManager.GetRoamingSetting<string>("TrialExpiration")) < DateTime.Now;
+            }
+        }
+
+        public static void RefreshTrial()
+        {
+            if (CurrentAppSimulator.LicenseInformation.IsTrial)
+            {
+                if (DateTime.Parse(SettingsManager.GetRoamingSetting<string>("TrialExpiration")).Year == 1)
+                    SettingsManager.SetRoamingSetting<string>("TrialExpiration", (DateTime.Now + TimeSpan.FromDays(3)).ToString());
+            }
+            else
+            {
+                SettingsManager.SetRoamingSetting<string>("TrialExpiration", new DateTime(9999, 12, 31).ToString());
             }
         }
     }

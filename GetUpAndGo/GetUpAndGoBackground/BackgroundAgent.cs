@@ -98,43 +98,60 @@ namespace GetUpAndGoBackground
                 int threshold = SettingsManager.GetSetting<int>("Threshold");
                 int frequency = SettingsManager.GetSetting<int>("Frequency");
                 bool trackSteps = IsInActiveTimeRange() && await NoDisruptiveAppointments();
-                if (!trackSteps)
+                if (!SettingsManager.TrialExpired)
                 {
-                    SettingsManager.SetSetting<int>("LastReading", -1);
-                    SettingsManager.SetSetting<string>("LastActive", DateTime.Now.ToString());
-                }
-                else
-                {
-                    long? currentReading = await bandTask;
-                    if (currentReading == null)
-                        await SendMessage("Error", "Couldn't get step count.");
+                    if (!trackSteps)
+                    {
+                        SettingsManager.SetSetting<int>("LastReading", -1);
+                        SettingsManager.SetSetting<string>("LastActive", DateTime.Now.ToString());
+                    }
                     else
                     {
-                        if (SettingsManager.GetSetting<int>("LastReading") < 0)
+                        long? currentReading = await bandTask;
+                        if (SettingsManager.GetSetting<int>("NumberOfPrompts") > 3 && !SettingsManager.GetSetting<bool>("ReviewMessageSent"))
                         {
-                            SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
-                            SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
+                            await SendMessage("Like Walk Reminder?", "Then rate it on the Windows Phone store. Just go into the app and tap on \"Rate/Review\". (Don't worry, this is the only time I'll buzz your wrist about this)");
+                            SettingsManager.SetSetting<bool>("ReviewMessageSent", true);
                         }
+                        if (currentReading == null)
+                            await SendMessage("Error", "Couldn't get step count.");
                         else
                         {
-                            if (currentReading - lastReading > threshold)
+                            if (SettingsManager.GetSetting<int>("LastReading") < 0)
                             {
                                 SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
                                 SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
-                                SettingsManager.SetSetting<string>("LastActive", now.ToString());
                             }
                             else
                             {
-                                if ((now - lastPrompt).TotalMinutes >= frequency - 10)
+                                if (currentReading - lastReading > threshold)
                                 {
-                                    // Send a notification.
-                                    await SendMessage("Go for a walk!", ((int)(now - lastActive).TotalMinutes).ToString() + " minutes since you last walked.");
                                     SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
                                     SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
-                                    SettingsManager.IncrementSetting("NumberOfPrompts");
+                                    SettingsManager.SetSetting<string>("LastActive", now.ToString());
+                                }
+                                else
+                                {
+                                    if ((now - lastPrompt).TotalMinutes >= frequency - 10)
+                                    {
+                                        // Send a notification.
+                                        await SendMessage("Go for a walk!", ((int)(now - lastActive).TotalMinutes).ToString() + " minutes since you last walked.");
+                                        SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
+                                        SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
+                                        SettingsManager.IncrementSetting("NumberOfPrompts");
+                                    }
                                 }
                             }
                         }
+                    }
+                }
+                else
+                {
+                    if (!SettingsManager.GetSetting<bool>("TrialExpiredMessageSent"))
+                    {
+                        await bandTask;
+                        await SendMessage("Trial Expired!", "Your trial of Walk Reminder has expired. If you would like to keep using it, purchase it for $.99 from the store.");
+                        SettingsManager.SetSetting<bool>("TrialExpiredMessageSent", true);
                     }
                 }
             }

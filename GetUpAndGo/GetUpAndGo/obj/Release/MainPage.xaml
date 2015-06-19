@@ -93,7 +93,7 @@
                     <TextBlock TextWrapping="WrapWholeWords" FontSize="22">Don't prompt me if I'm in the middle of a calendar appointment.</TextBlock>
                 </CheckBox>
                 <Button x:ConnectionId='4' Grid.Row="5"                                             HorizontalAlignment="Center">Manually Reset Background Task</Button>
-                <TextBlock Margin="5" x:Name="LastErrorBlock"/>
+                <TextBlock Margin="5" Grid.Row="6" x:Name="LastErrorBlock"/>
             </Grid>
         </ScrollViewer>
         <Grid Grid.Row="4">
