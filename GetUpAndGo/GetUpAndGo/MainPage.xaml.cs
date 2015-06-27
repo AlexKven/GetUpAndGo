@@ -46,11 +46,11 @@ namespace GetUpAndGo
         }
 
         #region Fields
-        const string bgTaskName = "GetUpAndGoBackgroundAgent";
+        internal const string bgTaskName = "GetUpAndGoBackgroundAgent";
         IBandInfo currentBand;
         IBackgroundTaskRegistration backgroundTask;
         bool tilePinned = false;
-        bool loadingFromSettings = true;
+        bool initialized = false;
         IBandClient bandClient;
 
         Guid bandTileId = new Guid("0D6CB82E-3206-43B6-BB7D-1B4E67A8ED43");
@@ -69,13 +69,19 @@ namespace GetUpAndGo
             {
                 TrialExpiredGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
-            if (bandClient == null)
+            if (!initialized)
             {
+                if (bandClient != null)
+                {
+                    bandClient.Dispose();
+                    bandClient = null;
+                }
                 loadingMessage = true;
                 await DetectBandAndUI();
                 await RefreshBackgroundTaskAndUI();
                 await RefreshPinnedTileAndUI();
                 loadingMessage = false;
+                initialized = true;
             }
         }
 
@@ -122,51 +128,6 @@ namespace GetUpAndGo
             RemoveBackgroundTask();
             await RefreshBackgroundTaskAndUI();
             loadingMessage = false;
-        }
-        #endregion
-
-        #region Settings Control Event Handlers
-        private void FrequencyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SettingsManager.SetSetting<int>("Frequency", int.Parse(((ComboBoxItem)FrequencyComboBox.SelectedItem).Tag.ToString()));
-        }
-
-        private void TimePicker_TimeChanged(object sender, TimePickerValueChangedEventArgs e)
-        {
-            if (!loadingFromSettings)
-            {
-                TimeSpan start;
-                TimeSpan end;
-                if (TimePicker1.Time < TimePicker2.Time)
-                {
-                    start = TimePicker1.Time;
-                    end = TimePicker2.Time;
-                }
-                else
-                {
-                    start = TimePicker2.Time;
-                    end = TimePicker1.Time;
-                }
-                SettingsManager.SetSetting<int>("StartHour", start.Hours);
-                SettingsManager.SetSetting<int>("StartMinute", start.Minutes);
-                SettingsManager.SetSetting<int>("EndHour", end.Hours);
-                SettingsManager.SetSetting<int>("EndMinute", end.Minutes);
-            }
-        }
-
-        private void ThresholdComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SettingsManager.SetSetting<int>("Threshold", int.Parse(((ComboBoxItem)ThresholdComboBox.SelectedItem).Tag.ToString()));
-        }
-
-        private void AvoidAppointmentsCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            SettingsManager.SetSetting<bool>("AvoidAppointments", true);
-        }
-
-        private void AvoidAppointmentsCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            SettingsManager.SetSetting<bool>("AvoidAppointments", false);
         }
         #endregion
 
@@ -239,7 +200,7 @@ namespace GetUpAndGo
                 ErrorBlock.Text = tileErrorMessage;
                 message = true;
             }
-            FrequencyComboBox.IsEnabled = !message;
+            MainListView.IsEnabled = !message;
             ErrorPopup.Visibility = message ? Visibility.Visible : Visibility.Collapsed;
             SetPinButtonFunctionality();
         }
@@ -350,33 +311,6 @@ namespace GetUpAndGo
 
         void loadFromSettings()
         {
-            loadingFromSettings = true;
-            int sh = SettingsManager.GetSetting<int>("StartHour");
-            int sm = SettingsManager.GetSetting<int>("StartMinute");
-            int eh = SettingsManager.GetSetting<int>("EndHour");
-            int em = SettingsManager.GetSetting<int>("EndMinute");
-            int freq = SettingsManager.GetSetting<int>("Frequency");
-            int thresh = SettingsManager.GetSetting<int>("Threshold");
-            bool avoidAppts = SettingsManager.GetSetting<bool>("AvoidAppointments");
-            foreach (ComboBoxItem item in FrequencyComboBox.Items)
-            {
-                int curItem = int.Parse(item.Tag.ToString());
-                if (freq >= curItem)
-                    FrequencyComboBox.SelectedItem = item;
-            }
-            foreach (ComboBoxItem item in ThresholdComboBox.Items)
-            {
-                int curItem = int.Parse(item.Tag.ToString());
-                if (thresh >= curItem)
-                    ThresholdComboBox.SelectedItem = item;
-            }
-            TimePicker1.Time = new TimeSpan(sh, sm, 0);
-            TimePicker2.Time = new TimeSpan(eh, em, 0);
-            AvoidAppointmentsCheckBox.IsChecked = avoidAppts;
-#if DEBUG
-            LastErrorBlock.Text = SettingsManager.GetSetting<string>("LastError") ?? "";
-#endif
-            loadingFromSettings = false;
         }
 
         void RemoveBackgroundTask()
@@ -453,21 +387,36 @@ namespace GetUpAndGo
             return "Please wait...\nIf you didn't get a screen asking you if you want to pin a tile, try again.";
         }
 
-        private void AboutButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AboutPage));
-        }
-
-        private async void RateAndReviewButton_Click(object sender, RoutedEventArgs e)
-        {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
-        }
-
         private async void PurchaseButton_Click(object sender, RoutedEventArgs e)
         {
-            await CurrentAppSimulator.RequestAppPurchaseAsync(false);
+            await CurrentApp.RequestAppPurchaseAsync(false);
             SettingsManager.RefreshTrial();
-            TrialExpiredGrid.Visibility = CurrentAppSimulator.LicenseInformation.IsTrial ? Visibility.Visible : Visibility.Collapsed;
+            TrialExpiredGrid.Visibility = CurrentApp.LicenseInformation.IsTrial ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            switch (((FrameworkElement)e.ClickedItem).Tag.ToString())
+            {
+                case "0":
+                    Frame.Navigate(typeof(ReminderFrequencyPage));
+                    break;
+                case "1":
+                    Frame.Navigate(typeof(StepQuotaPage));
+                    break;
+                case "2":
+                    Frame.Navigate(typeof(ActiveTimeSelectorPage));
+                    break;
+                case "3":
+                    Frame.Navigate(typeof(CalendarSettingsPage));
+                    break;
+                case "4":
+                    Frame.Navigate(typeof(AboutPage));
+                    break;
+                case "5":
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
+                    break;
+            }
         }
     }
 }

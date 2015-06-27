@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="GetUpAndGo.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetUpAndGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="36">About Walk Reminder</TextBlock>
+            <TextBlock FontSize="24" Grid.Row="1" HorizontalAlignment="Center">By AlexKven</TextBlock>
+            <TextBlock FontSize="16" Grid.Row="2" TextWrapping="WrapWholeWords">Walk Reminder puts a tile on your Microsoft Band to remind you to walk when you have been sitting for too long. Perfect for office jobs, anyone who codes, compulsive video game players, or anyone who should be walking more.</TextBlock>
+            <TextBlock FontSize="24" Grid.Row="3" Margin="0, 10, 0, 0">Have a problem or feature request?</TextBlock>
+            <TextBlock FontSize="22" Grid.Row="4">Twitter: @AlexKven</TextBlock>
+            <TextBlock FontSize="22" Grid.Row="5">Email: mathandprogramming@gmail.com</TextBlock>
+            <TextBlock FontSize="24" Grid.Row="6" Margin="0, 10, 0, 0">Reminders not working?</TextBlock>
+            <TextBlock FontSize="18" Grid.Row="7">Try manually resetting the background task.</TextBlock>
+            <Button x:ConnectionId='1' HorizontalAlignment="Center"                                         Grid.Row="8">Manually Reset Background Task</Button>
+            <TextBlock Opacity="0.5" Grid.Row="9" Margin="5,0,0,0" TextWrapping="WrapWholeWords" x:Name="ErrorBlock"></TextBlock>
+            <StackPanel Grid.Row="10" Margin="15">
+                <TextBlock FontSize="24" Margin="0,5,0,5">Version 1.3 (6/19/2015)</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Fixed a bug that would always enable a setting when the app starts.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Added a free trial mode to the app.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">The app will give the user one (and only one) prompt to rate the app after a period of use.</TextBlock>
+                <TextBlock FontSize="24" Margin="0,5,0,5">Version 1.2 (5/22/2015)</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Fixed bugs relating to connecting to the band and pinning the tile.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Created a new system for reporting errors that explains in better detail what the user needs to do to fix what the problem is.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Added a new introduction page.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Added a changelog.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Made it easier to find my twitter handle, email, and where to rate this app.</TextBlock>
+                <TextBlock FontSize="24" Margin="0,5,0,5">Version 1.1 (5/8/2015)</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Initial release.</TextBlock>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
+

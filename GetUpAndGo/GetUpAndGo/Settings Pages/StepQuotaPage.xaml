@@ -1,0 +1,54 @@
+﻿<local:SettingsPageBase
+    x:Class="GetUpAndGo.StepQuotaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetUpAndGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="WALK REMINDER" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="step quota" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <TextBlock FontSize="24" TextWrapping="WrapWholeWords">We will prompt you to walk if you haven't taken a certain number of steps within the reminder frequency time. How many steps should this be?</TextBlock>
+            <Grid Margin="0, 10, 0, 10" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="20" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Remind me if I didn't take at least...</TextBlock>
+                <ComboBox x:Name="ThresholdComboBox" SelectionChanged="ThresholdComboBox_SelectionChanged" IsEnabled="{Binding ElementName=FrequencyComboBox, Path=IsEnabled}" Grid.Column="1" Width="150" Margin="5">
+                    <ComboBoxItem Tag="0" Content="0 Steps"/>
+                    <ComboBoxItem Tag="10" Content="10 Steps"/>
+                    <ComboBoxItem Tag="25" Content="25 Steps"/>
+                    <ComboBoxItem Tag="50" Content="50 Steps"/>
+                    <ComboBoxItem Tag="75" Content="75 Steps"/>
+                    <ComboBoxItem Tag="100" Content="100 Steps"/>
+                    <ComboBoxItem Tag="150" Content="150 Steps"/>
+                    <ComboBoxItem Tag="200" Content="200 Steps"/>
+                    <ComboBoxItem Tag="300" Content="300 Steps"/>
+                    <ComboBoxItem Tag="500" Content="500 Steps"/>
+                </ComboBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</local:SettingsPageBase>

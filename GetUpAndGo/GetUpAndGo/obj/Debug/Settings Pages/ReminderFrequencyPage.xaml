@@ -1,0 +1,56 @@
+﻿<local:SettingsPageBase
+    x:Class="GetUpAndGo.ReminderFrequencyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetUpAndGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="WALK REMINDER" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="reminder frequency" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <StackPanel>
+                <TextBlock FontSize="24" TextWrapping="WrapWholeWords">How frequently do you want to be prompted to walk if you haven't taken enough steps?</TextBlock>
+                <Grid Margin="0, 10, 0, 10" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontSize="22" TextWrapping="WrapWholeWords" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">Prompt me every</TextBlock>
+                    <ComboBox x:ConnectionId='1' x:Name="FrequencyComboBox"                                                       Grid.Column="1" Width="150" Margin="5">
+                        <ComboBoxItem Tag="20" Content="15-30 minutes"/>
+                        <ComboBoxItem Tag="35" Content="30-45 Minutes"/>
+                        <ComboBoxItem Tag="50" Content="45-55 Minutes"/>
+                        <ComboBoxItem Tag="55" Content="Hour"/>
+                        <ComboBoxItem Tag="85" Content="1.5 Hours"/>
+                        <ComboBoxItem Tag="115" Content="2 Hours"/>
+                    </ComboBox>
+                </Grid>
+                <TextBlock FontSize="16" Opacity="0.5" TextWrapping="WrapWholeWords">Frequency is approximate; actual prompt times depend on when the OS runs the background task.</TextBlock>
+                <TextBlock FontSize="24" TextWrapping="WrapWholeWords">If you still haven't gotten up after being prompted to walk, do you want to be prompted more frequently until you do?</TextBlock>
+                <CheckBox>Yes, enable "nag mode."</CheckBox>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</local:SettingsPageBase>
+

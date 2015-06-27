@@ -270,10 +270,11 @@ namespace GetUpAndGoBackground
         bool IsInActiveTimeRange()
         {
             var time = DateTime.Now;
-            int sh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartHour"];
-            int sm = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["StartMinute"];
-            int eh = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndHour"];
-            int em = (int)ApplicationData.Current.LocalSettings.Containers["MainContainer"].Values["EndMinute"];
+            int[] activeIntervals = SettingsManager.GetSetting<int[]>("ActiveIntervals");
+            int sh = activeIntervals[(int)time.DayOfWeek];
+            int sm = activeIntervals[(int)time.DayOfWeek + 1];
+            int eh = activeIntervals[(int)time.DayOfWeek + 2];
+            int em = activeIntervals[(int)time.DayOfWeek + 3];
             if (time.Hour < sh) return false;
             if (time.Hour > eh) return false;
             if (time.Hour == sh && time.Minute < sm) return false;

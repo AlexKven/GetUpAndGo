@@ -7,7 +7,7 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="16469AlexKven.GoforaWalk" Publisher="CN=81569EFF-4F9B-4E3C-ABA4-C4271AC0D1B2" Version="1.3.2.5" ProcessorArchitecture="neutral" />
+  <Identity Name="16469AlexKven.GoforaWalk" Publisher="CN=81569EFF-4F9B-4E3C-ABA4-C4271AC0D1B2" Version="1.3.2.7" ProcessorArchitecture="neutral" />
   <mp:PhoneIdentity PhoneProductId="70867d3b-7a30-4d35-b98a-53a356ab361b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Walk Reminder</DisplayName>

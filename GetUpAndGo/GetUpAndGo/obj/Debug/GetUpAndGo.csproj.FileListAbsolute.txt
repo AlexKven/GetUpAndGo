@@ -45,18 +45,33 @@ C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\P
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\GetUpAndGoBackground.winmd
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\GetUpAndGoBackground.pdb
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\GetUpAndGoBackground.pri
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\IntroPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\IntroPage.g.i.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\IntroPage.g.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\IntroPage.xaml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\IntroPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\AboutPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\BasicPage1.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\AboutPage.g.i.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\AboutPage.g.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\BasicPage1.g.i.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\BasicPage1.g.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\AboutPage.xaml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\BasicPage1.xaml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\AboutPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\BasicPage1.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\Other Pages\AboutPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\Settings Pages\ActiveTimeSelectorPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\Settings Pages\CalendarSettingsPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\Other Pages\IntroPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\Settings Pages\ReminderFrequencyPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Debug\Settings Pages\StepQuotaPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\AboutPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\AboutPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ActiveTimeSelectorPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ActiveTimeSelectorPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\CalendarSettingsPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\CalendarSettingsPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\IntroPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\IntroPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ReminderFrequencyPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ReminderFrequencyPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\StepQuotaPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\StepQuotaPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\AboutPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\IntroPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\AboutPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Other Pages\IntroPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ActiveTimeSelectorPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\CalendarSettingsPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ReminderFrequencyPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\StepQuotaPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ActiveTimeSelectorPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\CalendarSettingsPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\ReminderFrequencyPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Debug\Settings Pages\StepQuotaPage.xbf

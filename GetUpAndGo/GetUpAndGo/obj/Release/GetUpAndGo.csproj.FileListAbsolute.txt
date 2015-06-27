@@ -60,3 +60,11 @@ C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\AboutPage.xbf
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\BasicPage1.xbf
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\IntroPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\layout.resfiles
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\layout.resfiles.intermediate
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\Resources.resfiles
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\Resources.resfiles.intermediate
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\pri.resfiles
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\pri.resfiles.intermediate
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\priconfig.xml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\priconfig.xml.intermediate

@@ -1,0 +1,91 @@
+﻿<local:SettingsPageBase
+    x:Class="GetUpAndGo.ActiveTimeSelectorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetUpAndGo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="WALK REMINDER" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="active times" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <ScrollViewer Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <StackPanel>
+                <RadioButton x:Name="RadioButton0" Checked="RadioButton_Checked">Same hours every day</RadioButton>
+                <RadioButton x:Name="RadioButton1" Checked="RadioButton_Checked">Separate weekday and weekend hours</RadioButton>
+                <RadioButton x:Name="RadioButton2" Checked="RadioButton_Checked">Different hours every day</RadioButton>
+                <Grid x:Name="HoursGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock FontSize="32" HorizontalAlignment="Center">Start</TextBlock>
+                    <TextBlock FontSize="32" HorizontalAlignment="Center" Grid.Column="2">End</TextBlock>
+                    <TimePicker x:Name="StartTimePicker0" TimeChanged="TimePicker_TimeChanged" Grid.Row="1"/>
+                    <TimePicker x:Name="EndTimePicker0" TimeChanged="TimePicker_TimeChanged" Grid.Row="1" Grid.Column="2"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Sunday</TextBlock>
+                    <TimePicker x:Name="StartTimePicker1" TimeChanged="TimePicker_TimeChanged" Grid.Row="2"/>
+                    <TimePicker x:Name="EndTimePicker1" TimeChanged="TimePicker_TimeChanged" Grid.Row="2" Grid.Column="2"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Monday</TextBlock>
+                    <TimePicker x:Name="StartTimePicker2" TimeChanged="TimePicker_TimeChanged" Grid.Row="3"/>
+                    <TimePicker x:Name="EndTimePicker2" TimeChanged="TimePicker_TimeChanged" Grid.Row="3" Grid.Column="2"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Tuesday</TextBlock>
+                    <TimePicker x:Name="StartTimePicker3" TimeChanged="TimePicker_TimeChanged" Grid.Row="4"/>
+                    <TimePicker x:Name="EndTimePicker3" TimeChanged="TimePicker_TimeChanged" Grid.Row="4" Grid.Column="2"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center">Wednesday</TextBlock>
+                    <TimePicker x:Name="StartTimePicker4" TimeChanged="TimePicker_TimeChanged" Grid.Row="5"/>
+                    <TimePicker x:Name="EndTimePicker4" TimeChanged="TimePicker_TimeChanged" Grid.Row="5" Grid.Column="2"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Thursday</TextBlock>
+                    <TimePicker x:Name="StartTimePicker5" TimeChanged="TimePicker_TimeChanged" Grid.Row="6"/>
+                    <TimePicker x:Name="EndTimePicker5" TimeChanged="TimePicker_TimeChanged" Grid.Row="6" Grid.Column="2"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Friday</TextBlock>
+                    <TimePicker x:Name="StartTimePicker6" TimeChanged="TimePicker_TimeChanged" Grid.Row="7"/>
+                    <TimePicker x:Name="EndTimePicker6" TimeChanged="TimePicker_TimeChanged" Grid.Row="7" Grid.Column="2"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Saturday</TextBlock>
+                    <TimePicker x:Name="StartTimePicker7" TimeChanged="TimePicker_TimeChanged" Grid.Row="8"/>
+                    <TimePicker x:Name="EndTimePicker7" TimeChanged="TimePicker_TimeChanged" Grid.Row="8" Grid.Column="2"/>
+                    <TextBlock Grid.Row="8" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Weekdays</TextBlock>
+                    <TimePicker x:Name="StartTimePicker8" TimeChanged="TimePicker_TimeChanged" Grid.Row="9"/>
+                    <TimePicker x:Name="EndTimePicker8" TimeChanged="TimePicker_TimeChanged" Grid.Row="9" Grid.Column="2"/>
+                    <TextBlock Grid.Row="9" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Weekends</TextBlock>
+                    <TimePicker x:Name="StartTimePicker9" TimeChanged="TimePicker_TimeChanged" Grid.Row="10"/>
+                    <TimePicker x:Name="EndTimePicker9" TimeChanged="TimePicker_TimeChanged" Grid.Row="10" Grid.Column="2"/>
+                    <TextBlock Grid.Row="10" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">Every Day</TextBlock>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</local:SettingsPageBase>

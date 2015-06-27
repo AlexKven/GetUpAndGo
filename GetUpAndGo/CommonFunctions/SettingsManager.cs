@@ -87,6 +87,31 @@ namespace GetUpAndGo
                 SetSetting<bool>("TrialExpiredMessageSent", false);
                 SetSetting<bool>("ReviewMessageSent", false);
             }
+            if (GetSetting<double>("Version") < 1.4)
+            {
+                SetSetting<double>("Version", 1.4);
+                int[] activeIntervals = new int[28];
+                for (int i = 0; i < 28; i++)
+                {
+                    switch (i % 4)
+                    {
+                        case 0:
+                            activeIntervals[i] = GetSetting<int>("StartHour");
+                            break;
+                        case 1:
+                            activeIntervals[i] = GetSetting<int>("StartMinute");
+                            break;
+                        case 2:
+                            activeIntervals[i] = GetSetting<int>("EndHour");
+                            break;
+                        case 3:
+                            activeIntervals[i] = GetSetting<int>("EndMinute");
+                            break;
+                    }
+                }
+                SettingsManager.SetSetting<int[]>("ActiveIntervals", activeIntervals);
+                SettingsManager.SetSetting<bool>("NagMode", false);
+            }
             if (!ApplicationData.Current.RoamingSettings.Containers.ContainsKey("MainContainer"))
                 ApplicationData.Current.RoamingSettings.CreateContainer("MainContainer", ApplicationDataCreateDisposition.Always);
             if (GetRoamingSetting<string>("TrialExpiration") == null)
@@ -97,13 +122,15 @@ namespace GetUpAndGo
         {
             get
             {
-                return DateTime.Parse(SettingsManager.GetRoamingSetting<string>("TrialExpiration")) < DateTime.Now;
+                DateTime tme = DateTime.Parse(SettingsManager.GetRoamingSetting<string>("TrialExpiration"));
+                if (tme.Year == 1) return false;
+                return tme < DateTime.Now;
             }
         }
 
         public static void RefreshTrial()
         {
-            if (CurrentAppSimulator.LicenseInformation.IsTrial)
+            if (CurrentApp.LicenseInformation.IsTrial)
             {
                 if (DateTime.Parse(SettingsManager.GetRoamingSetting<string>("TrialExpiration")).Year == 1)
                     SettingsManager.SetRoamingSetting<string>("TrialExpiration", (DateTime.Now + TimeSpan.FromDays(3)).ToString());
