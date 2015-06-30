@@ -6,7 +6,6 @@ C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\b
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\bin\Release\Microsoft.Band.Store.dll
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\bin\Release\Microsoft.Band.Phone.pri
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\bin\Release\Microsoft.Band.Store.pri
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\obj\Release\GetUpAndGoBackground.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\obj\Release\GetUpAndGoBackground.winmd
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\obj\Release\GetUpAndGoBackground.pdb
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGoBackground\obj\Release\GetUpAndGoBackground.winmdobj

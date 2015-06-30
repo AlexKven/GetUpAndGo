@@ -39,11 +39,24 @@ namespace GetUpAndGo
                 if (freq >= curItem)
                     FrequencyComboBox.SelectedItem = item;
             }
+            NagModeCheckBox.IsChecked = SettingsManager.GetSetting<bool>("NagMode");
         }
 
         private void FrequencyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SettingsManager.SetSetting<int>("Frequency", int.Parse(((ComboBoxItem)FrequencyComboBox.SelectedItem).Tag.ToString()));
+        }
+
+        private void NagModeCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!loading)
+                SettingsManager.SetSetting<bool>("NagMode", true);
+        }
+
+        private void NagModeCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!loading)
+                SettingsManager.SetSetting<bool>("NagMode", false);
         }
     }
 }

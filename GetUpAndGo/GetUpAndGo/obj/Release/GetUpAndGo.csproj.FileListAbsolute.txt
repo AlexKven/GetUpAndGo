@@ -1,5 +1,11 @@
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\App.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Other Pages\AboutPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\ActiveTimeSelectorPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\CalendarSettingsPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Other Pages\IntroPage.xbf
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\MainPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\ReminderFrequencyPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\StepQuotaPage.xbf
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\GetUpAndGo.xr.xml
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\GetUpAndGo.exe
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\GetUpAndGo.pdb
@@ -17,14 +23,38 @@ C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\GetUpAndGo.csprojResolveAssemblyReference.cache
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\App.g.i.cs
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\App.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\AboutPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\AboutPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ActiveTimeSelectorPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ActiveTimeSelectorPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\CalendarSettingsPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\CalendarSettingsPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\IntroPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\IntroPage.g.cs
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\MainPage.g.i.cs
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\MainPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ReminderFrequencyPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ReminderFrequencyPage.g.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\StepQuotaPage.g.i.cs
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\StepQuotaPage.g.cs
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\XamlTypeInfo.g.cs
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\App.xaml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\App.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\XamlSaveStateFile.xml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ActiveTimeSelectorPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\CalendarSettingsPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\IntroPage.xaml
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\MainPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ReminderFrequencyPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\StepQuotaPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\App.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ActiveTimeSelectorPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\CalendarSettingsPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\IntroPage.xbf
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\MainPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\ReminderFrequencyPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Settings Pages\StepQuotaPage.xbf
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\XamlSaveStateFile.xml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\AboutPage.xaml
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Other Pages\AboutPage.xbf
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\GetUpAndGo.exe
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\GetUpAndGo.pdb
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\en\Microsoft.Band.BandResources.resw
@@ -45,26 +75,3 @@ C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band.Phone.pri.xml
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band.Store.pri.xml
 C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\ProjectArchitectures.txt
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\AboutPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\BasicPage1.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\IntroPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\AboutPage.g.i.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\AboutPage.g.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\BasicPage1.g.i.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\BasicPage1.g.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\IntroPage.g.i.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\IntroPage.g.cs
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\AboutPage.xaml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\BasicPage1.xaml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\IntroPage.xaml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\AboutPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\BasicPage1.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\IntroPage.xbf
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\layout.resfiles
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\layout.resfiles.intermediate
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\Resources.resfiles
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\Resources.resfiles.intermediate
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\pri.resfiles
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\pri.resfiles.intermediate
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\priconfig.xml
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\obj\Release\Microsoft.Band\priconfig.xml.intermediate

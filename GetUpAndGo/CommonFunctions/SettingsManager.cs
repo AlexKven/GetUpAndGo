@@ -111,6 +111,7 @@ namespace GetUpAndGo
                 }
                 SettingsManager.SetSetting<int[]>("ActiveIntervals", activeIntervals);
                 SettingsManager.SetSetting<bool>("NagMode", false);
+                SettingsManager.SetSetting<bool>("PreviouslyPrompted", false);
             }
             if (!ApplicationData.Current.RoamingSettings.Containers.ContainsKey("MainContainer"))
                 ApplicationData.Current.RoamingSettings.CreateContainer("MainContainer", ApplicationDataCreateDisposition.Always);

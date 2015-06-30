@@ -9,9 +9,12 @@ Assets\SplashScreen.scale-240.png
 Assets\Square71x71Logo.scale-240.png
 Assets\StoreLogo.scale-240.png
 Assets\WideLogo.scale-240.png
-AboutPage.xbf
 App.xbf
-BasicPage1.xbf
 GetUpAndGo.xr.xml
-IntroPage.xbf
 MainPage.xbf
+Other Pages\AboutPage.xbf
+Other Pages\IntroPage.xbf
+Settings Pages\ActiveTimeSelectorPage.xbf
+Settings Pages\CalendarSettingsPage.xbf
+Settings Pages\ReminderFrequencyPage.xbf
+Settings Pages\StepQuotaPage.xbf

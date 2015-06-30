@@ -48,7 +48,7 @@
                 </Grid>
                 <TextBlock FontSize="16" Opacity="0.5" TextWrapping="WrapWholeWords">Frequency is approximate; actual prompt times depend on when the OS runs the background task.</TextBlock>
                 <TextBlock FontSize="24" TextWrapping="WrapWholeWords">If you still haven't gotten up after being prompted to walk, do you want to be prompted more frequently until you do?</TextBlock>
-                <CheckBox>Yes, enable "nag mode."</CheckBox>
+                <CheckBox x:Name="NagModeCheckBox" Checked="NagModeCheckBox_Checked" Unchecked="NagModeCheckBox_Unchecked">Yes, enable "nag mode."</CheckBox>
             </StackPanel>
         </Grid>
     </Grid>

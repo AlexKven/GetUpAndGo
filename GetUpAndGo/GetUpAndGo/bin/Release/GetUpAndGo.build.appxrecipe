@@ -73,17 +73,26 @@
     <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\AboutPage.xbf">
-      <PackagePath>AboutPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Other Pages\AboutPage.xbf">
+      <PackagePath>Other Pages\AboutPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\BasicPage1.xbf">
-      <PackagePath>BasicPage1.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\ActiveTimeSelectorPage.xbf">
+      <PackagePath>Settings Pages\ActiveTimeSelectorPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\IntroPage.xbf">
-      <PackagePath>IntroPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\CalendarSettingsPage.xbf">
+      <PackagePath>Settings Pages\CalendarSettingsPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Other Pages\IntroPage.xbf">
+      <PackagePath>Other Pages\IntroPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\ReminderFrequencyPage.xbf">
+      <PackagePath>Settings Pages\ReminderFrequencyPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\Settings Pages\StepQuotaPage.xbf">
+      <PackagePath>Settings Pages\StepQuotaPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\bin\Release\GetUpAndGo.xr.xml">
       <PackagePath>GetUpAndGo.xr.xml</PackagePath>

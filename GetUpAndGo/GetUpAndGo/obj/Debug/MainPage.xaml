@@ -34,19 +34,19 @@
         <ListView x:ConnectionId='1' Grid.Row="3" SelectionMode="None" x:Name="MainListView"                                IsItemClickEnabled="True">
             <StackPanel Tag="0">
                 <TextBlock FontSize="32" Margin="8,8,8,0">reminder frequency</TextBlock>
-                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords">remind me every 15-30 minutes...</TextBlock>
+                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords" x:Name="FrequencySubtext">remind me every 15-30 minutes...</TextBlock>
             </StackPanel>
             <StackPanel Tag="1">
                 <TextBlock FontSize="32" Margin="8,8,8,0">step quota</TextBlock>
-                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords">...if I didn't take more than 100 steps</TextBlock>
+                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords" x:Name="ThresholdSubtext">...if I didn't take more than 100 steps</TextBlock>
             </StackPanel>
             <StackPanel Tag="2">
                 <TextBlock FontSize="32" Margin="8,8,8,0">active times</TextBlock>
-                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords">different between weekdays and weekends</TextBlock>
+                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords" x:Name="ActiveTimesSubtext">different between weekdays and weekends</TextBlock>
             </StackPanel>
             <StackPanel Tag="3">
                 <TextBlock FontSize="32" Margin="8,8,8,0">calendar settings</TextBlock>
-                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords">do not prompt me during calendar appointments</TextBlock>
+                <TextBlock FontSize="16" Margin="8,0,8,8" Opacity="0.5" TextWrapping="WrapWholeWords" x:Name="CalendarSubtext">do not prompt me during calendar appointments</TextBlock>
             </StackPanel>
             <StackPanel Tag="4">
                 <TextBlock FontSize="32" Margin="8,8,8,0">help+about</TextBlock>

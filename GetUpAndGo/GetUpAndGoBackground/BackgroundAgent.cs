@@ -92,11 +92,6 @@ namespace GetUpAndGoBackground
                 SettingsManager.IncrementSetting("BackgroundTaskRuns");
                 var now = DateTime.Now;
                 Task<long?> bandTask = ConnectGetPedometerReading();
-                DateTime lastPrompt = DateTime.Parse(SettingsManager.GetSetting<string>("LastPrompt"));
-                DateTime lastActive = DateTime.Parse(SettingsManager.GetSetting<string>("LastActive"));
-                int lastReading = SettingsManager.GetSetting<int>("LastReading");
-                int threshold = SettingsManager.GetSetting<int>("Threshold");
-                int frequency = SettingsManager.GetSetting<int>("Frequency");
                 bool trackSteps = IsInActiveTimeRange() && await NoDisruptiveAppointments();
                 if (!SettingsManager.TrialExpired)
                 {
@@ -108,6 +103,12 @@ namespace GetUpAndGoBackground
                     else
                     {
                         long? currentReading = await bandTask;
+                        DateTime lastPrompt = DateTime.Parse(SettingsManager.GetSetting<string>("LastPrompt"));
+                        DateTime lastActive = DateTime.Parse(SettingsManager.GetSetting<string>("LastActive"));
+                        int lastReading = SettingsManager.GetSetting<int>("LastReading");
+                        int threshold = SettingsManager.GetSetting<int>("Threshold");
+                        int frequency = SettingsManager.GetSetting<int>("Frequency");
+                        bool previouslyPrompted = SettingsManager.GetSetting<bool>("PreviouslyPrompted");
                         if (SettingsManager.GetSetting<int>("NumberOfPrompts") > 3 && !SettingsManager.GetSetting<bool>("ReviewMessageSent"))
                         {
                             await SendMessage("Like Walk Reminder?", "Then rate it on the Windows Phone store. Just go into the app and tap on \"Rate/Review\". (Don't worry, this is the only time I'll buzz your wrist about this)");
@@ -121,6 +122,7 @@ namespace GetUpAndGoBackground
                             {
                                 SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
                                 SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
+                                SettingsManager.SetSetting<bool>("PreviouslyPrompted", false);
                             }
                             else
                             {
@@ -129,6 +131,7 @@ namespace GetUpAndGoBackground
                                     SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
                                     SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
                                     SettingsManager.SetSetting<string>("LastActive", now.ToString());
+                                    SettingsManager.SetSetting<bool>("PreviouslyPrompted", false);
                                 }
                                 else
                                 {
@@ -136,6 +139,14 @@ namespace GetUpAndGoBackground
                                     {
                                         // Send a notification.
                                         await SendMessage("Go for a walk!", ((int)(now - lastActive).TotalMinutes).ToString() + " minutes since you last walked.");
+                                        SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
+                                        SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
+                                        SettingsManager.SetSetting<bool>("PreviouslyPrompted", true);
+                                        SettingsManager.IncrementSetting("NumberOfPrompts");
+                                    }
+                                    else if (SettingsManager.GetSetting<bool>("NagMode") && previouslyPrompted)
+                                    {
+                                        await SendMessage("No really, get up!", ((int)(now - lastActive).TotalMinutes).ToString() + " minutes since you last walked.");
                                         SettingsManager.SetSetting<int>("LastReading", (int)currentReading.Value);
                                         SettingsManager.SetSetting<string>("LastPrompt", now.ToString());
                                         SettingsManager.IncrementSetting("NumberOfPrompts");
@@ -271,10 +282,10 @@ namespace GetUpAndGoBackground
         {
             var time = DateTime.Now;
             int[] activeIntervals = SettingsManager.GetSetting<int[]>("ActiveIntervals");
-            int sh = activeIntervals[(int)time.DayOfWeek];
-            int sm = activeIntervals[(int)time.DayOfWeek + 1];
-            int eh = activeIntervals[(int)time.DayOfWeek + 2];
-            int em = activeIntervals[(int)time.DayOfWeek + 3];
+            int sh = activeIntervals[(int)time.DayOfWeek * 4];
+            int sm = activeIntervals[(int)time.DayOfWeek * 4 + 1];
+            int eh = activeIntervals[(int)time.DayOfWeek * 4 + 2];
+            int em = activeIntervals[(int)time.DayOfWeek * 4 + 3];
             if (time.Hour < sh) return false;
             if (time.Hour > eh) return false;
             if (time.Hour == sh && time.Minute < sm) return false;

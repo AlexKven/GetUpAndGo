@@ -34,6 +34,10 @@
             <Button HorizontalAlignment="Center" Click="ResetBackgroundTaskButton_Click" Grid.Row="8">Manually Reset Background Task</Button>
             <TextBlock Opacity="0.5" Grid.Row="9" Margin="5,0,0,0" TextWrapping="WrapWholeWords" x:Name="ErrorBlock"></TextBlock>
             <StackPanel Grid.Row="10" Margin="15">
+                <TextBlock FontSize="24" Margin="0,5,0,5">Version 1.4 (6/27/2015)</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Overhauled the UI to make it more organized and easier to add features.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Allows you to set your active hours for each day of the week instead of requiring the same hours each day of the week.</TextBlock>
+                <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Added "nag mode," that when enabled will remind you more frequently to get up when you start ignoring prompts.</TextBlock>
                 <TextBlock FontSize="24" Margin="0,5,0,5">Version 1.3 (6/19/2015)</TextBlock>
                 <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Fixed a bug that would always enable a setting when the app starts.</TextBlock>
                 <TextBlock FontSize="16" Margin="0,5,0,5" TextWrapping="WrapWholeWords">Added a free trial mode to the app.</TextBlock>

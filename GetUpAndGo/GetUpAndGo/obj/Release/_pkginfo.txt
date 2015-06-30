@@ -1,1 +1,1 @@
-C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\AppPackages\GetUpAndGo_1.3.2.7_AnyCPU_Test\GetUpAndGo_1.3.2.7_AnyCPU.appx
+C:\Users\Alexander\Documents\GitHub\GetUpAndGo\GetUpAndGo\GetUpAndGo\AppPackages\GetUpAndGo_1.4.2.9_AnyCPU_Test\GetUpAndGo_1.4.2.9_AnyCPU.appx

@@ -41,8 +41,6 @@ namespace GetUpAndGo
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
-
-            loadFromSettings();
         }
 
         #region Fields
@@ -65,6 +63,7 @@ namespace GetUpAndGo
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            loadFromSettings();
             if (SettingsManager.TrialExpired)
             {
                 TrialExpiredGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -311,6 +310,44 @@ namespace GetUpAndGo
 
         void loadFromSettings()
         {
+            int freq = SettingsManager.GetSetting<int>("Frequency");
+            Tuple<int, string>[] frequencies = new Tuple<int, string>[] { new Tuple<int, string>(20, "15-30 minutes"),
+            new Tuple<int, string>(35, "30-45 minutes"), new Tuple<int, string>(50, "45-55 minutes"), 
+            new Tuple<int, string>(55, "Hour"), new Tuple<int, string>(85, "1.5 Hours"), new Tuple<int, string>(115, "2 Hours"), };
+            Tuple<int, string> curItem = frequencies[0];
+            foreach (var item in frequencies)
+            {
+                if (freq >= item.Item1)
+                    curItem = item;
+            }
+            FrequencySubtext.Text = "remind me every " + curItem.Item2 + "...";
+            ThresholdSubtext.Text = "...if I didn't take more than " + SettingsManager.GetSetting<int>("Threshold") + " steps.";
+            int[] activeTimes = SettingsManager.GetSetting<int[]>("ActiveIntervals");
+            bool everyday = true;
+            bool weekdayWeekend = true;
+            for (int i = 0; i < 28; i++)
+            {
+                everyday &= activeTimes[i] == activeTimes[i % 4];
+                if (i >= 4 && i < 24)
+                    weekdayWeekend &= activeTimes[i] == activeTimes[4 + i % 4];
+                else
+                    weekdayWeekend &= activeTimes[i] == activeTimes[i % 4];
+            }
+            if (everyday)
+            {
+                int sHour = activeTimes[0] % 12;
+                if (sHour == 0)
+                    sHour = 12;
+                int eHour = activeTimes[2] % 12;
+                if (eHour == 0)
+                    eHour = 12;
+                ActiveTimesSubtext.Text = sHour + ":" + activeTimes[1].ToString("00") + " to " + eHour + ":" + activeTimes[3].ToString("00") + " every day.";
+            }
+            else if (weekdayWeekend)
+                ActiveTimesSubtext.Text = "different between weekdays and weekends.";
+            else
+                ActiveTimesSubtext.Text = "different for each day.";
+            CalendarSubtext.Text = SettingsManager.GetSetting<bool>("AvoidAppointments") ? "don't prompt me during calendar appointments." : "Don't take calendar appointments into consideration.";
         }
 
         void RemoveBackgroundTask()
@@ -337,9 +374,10 @@ namespace GetUpAndGo
                     backgroundTask = task.Value;
                 }
             }
-            if (SettingsManager.GetSetting<double>("LastBackgroundTaskReset") != 1.3 && backgroundTask != null)
+            if (SettingsManager.GetSetting<double>("LastBackgroundTaskReset") != 1.4 && backgroundTask != null)
             {
-                SettingsManager.SetSetting<double>("LastBackgroundTaskReset", 1.3);
+                SettingsManager.SetSetting<double>("LastBackgroundTaskReset", 1.4);
+                backgroundTask.Unregister(true);
                 BackgroundExecutionManager.RemoveAccess();
                 backgroundTask = null;
             }

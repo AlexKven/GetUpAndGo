@@ -37,12 +37,14 @@ namespace GetUpAndGo
 
         private void AvoidAppointmentsCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            SettingsManager.SetSetting<bool>("AvoidAppointments", true);
+            if (!loading)
+                SettingsManager.SetSetting<bool>("AvoidAppointments", true);
         }
 
         private void AvoidAppointmentsCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            SettingsManager.SetSetting<bool>("AvoidAppointments", false);
+            if (!loading)
+                SettingsManager.SetSetting<bool>("AvoidAppointments", false);
         }
     }
 }
