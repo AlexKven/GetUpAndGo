@@ -1,3 +1,7 @@
+App.xbf
+GetUpAndGo.xr.xml
+IntroPage.xbf
+MainPage.xbf
 Assets\Band\IconLarge.png
 Assets\Band\IconSmall.png
 Assets\Images\BandImage.png
@@ -9,7 +13,3 @@ Assets\SplashScreen.scale-240.png
 Assets\Square71x71Logo.scale-240.png
 Assets\StoreLogo.scale-240.png
 Assets\WideLogo.scale-240.png
-App.xbf
-GetUpAndGo.xr.xml
-IntroPage.xbf
-MainPage.xbf
